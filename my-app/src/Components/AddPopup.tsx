@@ -25,16 +25,36 @@ type AddPopup={
     day?: DayType;
 onChange?: (value: DayType) => void;
 onClickDay:()=>void;
-    
+edit:Boolean
+setEdit:(x:Boolean)=>void
 
 }
 const d=new Date()
 
-const AddPopup = ({popevent,setpopevent,t,dateset,changeToday,day,onChange,onClickDay}:AddPopup) => {
+const AddPopup = ({popevent,setpopevent,t,dateset,changeToday,day,onChange,onClickDay,edit,setEdit}:AddPopup) => {
     const [taskcontent,settask]=useState<boolean>(false)
     
+    function buttons(){
+        if(!edit){
+            if(!taskcontent){
+                return(
+                    <button className="addone" disabled >Add task</button>
+                )
+            }
+            else if(taskcontent){
+                return(<button className="addone1" onClick={()=>addtoTAsk()}>Add TAsk</button>)
+    
+            }
 
+        }
+        else{
+            return(<button className="addone1">Save</button>)
+
+        }
+            
+    }
     const addtoTAsk =() => {
+        
         let o: Task1 = {
             
             task: "",
@@ -96,13 +116,16 @@ const AddPopup = ({popevent,setpopevent,t,dateset,changeToday,day,onChange,onCli
                     </div>
                 </div>
                 <div className="buts">
-                    <button className="cancel" onClick={()=>setpopevent(!popevent)}>Cancel</button>
-                    {!taskcontent&&<button className="addone" disabled >Add task</button>}
+                    <button className="cancel" onClick={()=>{
+                        setEdit(false)
+                        setpopevent(!popevent)}}>Cancel</button>
+                    {/* {!taskcontent&&<button className="addone" disabled >Add task</button>}
                     {taskcontent&&<button className="addone1" onClick={()=>addtoTAsk()}>
                         Add task
                     </button>
                     
-                    }
+                    } */}
+                    {buttons()}
                     
                     
                 </div>

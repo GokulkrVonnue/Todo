@@ -445,6 +445,7 @@ p.how{
   /* display: none; */
   z-index: 1;
   position: absolute;
+  top: 80px;
   left: 650px;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1),-10px -10px 10px rgba(0, 0, 0, 0.1);
   
@@ -660,6 +661,7 @@ object-fit: fill;
   padding: 10px;
   border-radius: 3px;
 }
+
 .react-calendar__navigation {
   display: flex;
 
@@ -713,6 +715,19 @@ abbr{
   /* box-shadow: 10px 10px 10px rgba(131, 131, 155, 0.2); */
   border: 1px solid rgb(201, 197, 197);
 }
+.calen1{
+  width: 300px;
+  height: 500px;
+  /* height: 700px; */
+  
+  position: absolute;
+  z-index: 1;
+  left:360px;
+  border-radius: 10px;
+  background-color: white;
+  /* box-shadow: 10px 10px 10px rgba(131, 131, 155, 0.2); */
+  border: 1px solid rgb(201, 197, 197);
+}
 .todayemb{
   display: flex;
   gap: 5px;
@@ -724,4 +739,15 @@ abbr{
   font-weight: 500px;
   color: #202020;
   margin-top: 5px;
+}
+.editandadd{
+  display: flex;
+  justify-content: space-between;
+  
+}
+.edit{
+  display: none;
+}
+.editandadd:hover .edit{
+  display: block;
 }

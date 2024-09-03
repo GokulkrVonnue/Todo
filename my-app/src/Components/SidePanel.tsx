@@ -7,9 +7,11 @@ import Links from "./Links";
 type SidePanel = {
     sidepanelOperation: (x: boolean) => void;
     sidePanel: Boolean;
+    addpop:Boolean;
+    setpop:(x:Boolean)=>void
 };
 
-const SidePanel = ({ sidepanelOperation, sidePanel }: SidePanel) => {
+const SidePanel = ({ sidepanelOperation, sidePanel,addpop,setpop}: SidePanel) => {
     return (
         <>
             <div className={sidePanel ? "sidePanel" : "sidePanelOff"}>
@@ -17,7 +19,7 @@ const SidePanel = ({ sidepanelOperation, sidePanel }: SidePanel) => {
                     sidepanelOperation={sidepanelOperation}
                     sidePanel={sidePanel}
                 />
-                <Links/>
+                <Links addpop={addpop} setpop={setpop}/>
             </div>
             
         </>

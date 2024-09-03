@@ -45,7 +45,7 @@ function SetDate({ dateset, changeToday, day, onChange,onClickDay }: Dateprop) {
                 <p onClick={changeDue}>Due Date</p>
             </div>
             {nodue && (
-                <div className="calen">
+                <div className="calen1">
                     <div className="todayemb">
                         <div>
                             <img src="./img/svgexport-30.svg" alt="" />

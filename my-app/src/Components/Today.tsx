@@ -6,6 +6,7 @@ import AddedContent from "./AddedContent";
 import Calender from "./SelectCalander";
 import TodayImg from "./TodayImg";
 import SelectCalander from "./SelectCalander";
+import Addcont from "./Addcont";
 interface Task {
     id:number,
     taskName: string;
@@ -22,6 +23,11 @@ type Today = {
     data: Task[];
     t: (value: Task1) => void;
     deleteData:(id:number)=>void;
+    addpop:Boolean;
+    setpop:(x:Boolean)=>void
+    editData:(x:number)=>void
+    edit:Boolean
+    setEdit:(x:Boolean)=>void
     
 };
 type  ValuePiece = Date|null
@@ -29,7 +35,14 @@ type DayType = ValuePiece | [ValuePiece, ValuePiece];
 
 
 
-function Today({ data, t ,deleteData}: Today) {
+function Today({ data, t ,deleteData,addpop,setpop,editData,edit,setEdit}: Today) {
+    // window.addEventListener('click',()=>{
+    //     if(addpop){
+    //         setpop(false)
+
+    //     }
+
+    // })
     console.log("today is rendering", data.length);
     const [today,setDoday]=useState<String>("today")
     const [day, onChange] = useState<DayType>(new Date());
@@ -40,7 +53,7 @@ function Today({ data, t ,deleteData}: Today) {
 
 
     
-    // let dateset="today"
+  
 
     function changeToday(){
         setDoday("nodue")
@@ -60,14 +73,22 @@ function Today({ data, t ,deleteData}: Today) {
                     
                     
                     
-                   {data.map(item=><AddedContent task={item.taskName} des={item.description} id={item.id} deleteData={deleteData}/>)} 
+                   {data.map(item=><AddedContent task={item.taskName} des={item.description} id={item.id} deleteData={deleteData} editData={editData} popevent={addpop}
+                            setpopevent={setpop}/>)} 
                     
                 </div>
             </div>
+            {addpop&& (<Addcont popevent={addpop}
+                            setpopevent={setpop}
+                            t={t}
+                            dateset={today}
+                            changeToday={changeToday} day={day} onChange={onChange} onClickDay={onClickDay}/>)}
+
 
             <div className="popupAdded">
                 {popevent && (
-                    <AddPopup popevent={popevent} setpopevent={setpopevent} t={t} dateset={today} changeToday={changeToday} day={day} onChange={onChange} onClickDay={onClickDay}/>
+                    <AddPopup popevent={popevent} setpopevent={setpopevent} t={t} dateset={today} changeToday={changeToday} day={day} onChange={onChange} onClickDay={onClickDay} edit={edit}
+                    setEdit={setEdit}/>
                 )}
             </div>
             <div className="tasktask">

@@ -1,12 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+type Links={
+  addpop:Boolean
+  setpop:(x:Boolean)=>void
+}
 
-function Links() {
+function Links({addpop,setpop}:Links) {
     
   return (
     <div className="link">
       
-        <div className="linktask">
+        <div className="linktask" onClick={(e)=>{
+        e.stopPropagation()
+          setpop(!addpop)}}>
           <img src="./img/svgexport-6.svg" alt="" />
           <span className="m">Add task</span>
         </div>

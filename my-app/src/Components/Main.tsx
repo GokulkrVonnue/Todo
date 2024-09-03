@@ -4,7 +4,8 @@ import RightMain from "./RightMain";
 
 function Main() {
     const [sidepanel,setSidepanel]=useState<Boolean>(true)
-    const [toolTip,setTooltip]=useState<Boolean>(false)
+    
+    const [addpop,setpop]=useState<Boolean>(false)
     
    
 
@@ -15,8 +16,8 @@ function Main() {
 
   return (
     <div className="main">
-      <SidePanel  sidepanelOperation={setSidepanel} sidePanel={sidepanel} />
-      <RightMain/>
+      <SidePanel  sidepanelOperation={setSidepanel} sidePanel={sidepanel} addpop={addpop} setpop={setpop}/>
+      <RightMain addpop={addpop} setpop={setpop}/>
     </div>
   );
 }

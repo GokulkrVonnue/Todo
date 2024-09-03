@@ -21,10 +21,24 @@ type Inbox = {
     data: Task[];
     t: (value: Task1) => void;
     deleteData: (id: number) => void;
+    addpop:Boolean;
+    setpop:(x:Boolean)=>void
+    editData:(x:number)=>void
+    edit:Boolean
+    setEdit:(x:Boolean)=>void
 };
-function Inbox({ data, t, deleteData }: Inbox) {
+function Inbox({ data, t, deleteData ,addpop,setpop,editData,edit,setEdit}: Inbox) {
+    // window.addEventListener('click',()=>{
+    //     if(addpop){
+    //         setpop(false)
+
+    //     }
+        
+
+    // })
+    console.log(addpop)
     const [today,setDoday]=useState<String>("no due")
-    const [pop, setpop] = useState<boolean>(false);
+    const [pop, setpop1] = useState<boolean>(false);
     const [day, onChange] = useState<DayType>(new Date());
     // let dateset = "no due";
     function changeToday(){
@@ -50,24 +64,30 @@ function Inbox({ data, t, deleteData }: Inbox) {
                             id={item.id}
                             deleteData={deleteData}
                             date={item.date.toString().slice(3,10)}
+                            editData={editData}
+                            popevent={addpop}
+                            setpopevent={setpop1}
+                            
                         />
                     ))}
                 </div>
             </div>
-            {/* <Addcont popevent={pop}
-                        setpopevent={setpop}
-                        t={t}
-                        dateset={today}
-                        changeToday={changeToday} day={day} onChange={onChange} onClickDay={onClickDay}/> */}
+                {addpop&& (<Addcont popevent={addpop}
+                            setpopevent={setpop}
+                            t={t}
+                            dateset={today}
+                            changeToday={changeToday} day={day} onChange={onChange} onClickDay={onClickDay}/>)}
 
             <div className="popupAdded">
                 {pop && (
                     <AddPopup
                         popevent={pop}
-                        setpopevent={setpop}
+                        setpopevent={setpop1}
                         t={t}
                         dateset={today}
                         changeToday={changeToday} day={day} onChange={onChange} onClickDay={onClickDay}
+                        edit={edit}
+                        setEdit={setEdit}
                     />
                 )}
             </div>
@@ -78,7 +98,9 @@ function Inbox({ data, t, deleteData }: Inbox) {
                         <div>
                             <img src="./img/svgexport-18.svg" alt="" />
                         </div>
-                        <p onClick={() => setpop(!pop)}>Add task</p>
+                        <p onClick={() => {
+                            
+                            setpop1(!pop)}}>Add task</p>
                     </div>
                     )}
             </div>

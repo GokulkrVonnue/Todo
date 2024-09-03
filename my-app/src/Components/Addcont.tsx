@@ -17,7 +17,7 @@ interface Task {
     date:String;
   }
 type Addcont={
-    popevent:boolean
+    popevent:Boolean
     setpopevent:(x:boolean)=>void
     t:(o:Task1)=>void
     dateset:String;
@@ -32,7 +32,7 @@ const d=new Date()
 
 const Addcont = ({popevent,setpopevent,t,dateset,changeToday,day,onChange,onClickDay}:Addcont) => {
     const [taskcontent,settask]=useState<boolean>(false)
-    
+    console.log("ADDcont")
 
     const addtoTAsk =() => {
         let o: Task1 = {
@@ -63,6 +63,7 @@ const Addcont = ({popevent,setpopevent,t,dateset,changeToday,day,onChange,onClic
           taskName.value=""
           descr.value=""
           settask(false)
+          setpopevent(false)
           
     }
     

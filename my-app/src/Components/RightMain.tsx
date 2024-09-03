@@ -16,8 +16,12 @@ interface Task1 {
   descr: string;
   date:String
 }
-let id=1
-function RightMain() {
+type RightMain={
+  addpop:Boolean;
+  setpop:(x:Boolean)=>void
+
+}
+function RightMain({addpop,setpop}:RightMain) {
   useEffect(()=>{
     getData()
     
@@ -26,6 +30,7 @@ function RightMain() {
   
   let d1=new Date()
   let [data, setData] = useState<Task[]>([]);
+  let [edit,setEdit]=useState<Boolean>(false)
   
   function t(value: Task1) {
     
@@ -65,6 +70,10 @@ function RightMain() {
       getData()
     })
   }
+  function editData(id:number){
+    alert(`edit Clicked ${id}`)
+    // setEdit(!edit)
+}
 
   let today = data.filter(item=>item.date==d1?.toString().slice(0,15))
   
@@ -73,9 +82,9 @@ function RightMain() {
     <>
       <div className="right">
         <Routes>
-          <Route path="/" element={<AddTask />} />
-          <Route path="/inbox" element={<Inbox data={data} t={t} deleteData={deleteData}  />} />
-          <Route path="/today" element={<Today data={today} t={t} deleteData={deleteData}/>} />
+          <Route path="/" element={<Today data={today} t={t} deleteData={deleteData} addpop={addpop} setpop={setpop} editData={editData} edit={edit} setEdit={setEdit}/>} />
+          <Route path="/inbox" element={<Inbox data={data} t={t} deleteData={deleteData} addpop={addpop} setpop={setpop} editData={editData} edit={edit} setEdit={setEdit}/>} />
+          <Route path="/today" element={<Today data={today} t={t} deleteData={deleteData} addpop={addpop} setpop={setpop} editData={editData} edit={edit} setEdit={setEdit}/>} />
           <Route path="/upcoming" element={<Upcoming />} />
         </Routes>
       </div>
