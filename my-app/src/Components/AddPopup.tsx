@@ -3,6 +3,7 @@ import React, { ChangeEvent, useState } from "react";
 import Calender from "./SelectCalander";
 
 import SetDate from "./SetDate";
+import Priority from "./Priority";
 type  ValuePiece = Date|null
 type DayType = ValuePiece | [ValuePiece, ValuePiece];
 interface Task {
@@ -35,7 +36,7 @@ const AddPopup = ({popevent,setpopevent,t,dateset,changeToday,day,onChange,onCli
     const [taskcontent,settask]=useState<boolean>(false)
     
     function buttons(){
-        if(!edit){
+        
             if(!taskcontent){
                 return(
                     <button className="addone" disabled >Add task</button>
@@ -46,11 +47,8 @@ const AddPopup = ({popevent,setpopevent,t,dateset,changeToday,day,onChange,onCli
     
             }
 
-        }
-        else{
-            return(<button className="addone1">Save</button>)
-
-        }
+        
+        
             
     }
     const addtoTAsk =() => {
@@ -102,7 +100,11 @@ const AddPopup = ({popevent,setpopevent,t,dateset,changeToday,day,onChange,onCli
                 <input type="text" placeholder="Task name" className="taskname" onChange={textevent}/>
                 <input type="text" placeholder="Description" className="description" />
             </div>
+            <div className="dateandprio">
             <SetDate dateset={dateset} changeToday={changeToday} day={day} onChange={onChange} onClickDay={onClickDay}/>
+            <Priority/>
+            </div>
+            
             <hr className="datehr" />
             <div className="addandcancel">
                 <div className="addinbox">

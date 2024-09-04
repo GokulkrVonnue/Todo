@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import AddTask from "./AddTask";
 import Inbox from "./Inbox";
@@ -21,7 +21,18 @@ type RightMain={
   setpop:(x:Boolean)=>void
 
 }
+interface UserContextType {
+ priority:string
+}
 function RightMain({addpop,setpop}:RightMain) {
+  let PriorityofFlag=React.createContext("")
+
+   
+  
+  
+  const [priority, setPriority] = useState<string>("p4")
+
+  
   useEffect(()=>{
     getData()
     
@@ -31,6 +42,7 @@ function RightMain({addpop,setpop}:RightMain) {
   let d1=new Date()
   let [data, setData] = useState<Task[]>([]);
   let [edit,setEdit]=useState<Boolean>(false)
+  let [editid,seteditid]=useState<number>(0)
   
   function t(value: Task1) {
     
@@ -71,8 +83,22 @@ function RightMain({addpop,setpop}:RightMain) {
     })
   }
   function editData(id:number){
+    seteditid(id)
     alert(`edit Clicked ${id}`)
-    // setEdit(!edit)
+    setEdit(true)
+}
+function uploadData(value:Task1){
+  axios.put(`http://localhost:3005/${editid}`,{
+    taskName:value.task,
+    description:value.descr,
+    date:value.date
+  })
+    .then(()=>{
+      console.log("UPDATED")
+      getData()
+    })
+  console.log(value)
+
 }
 
   let today = data.filter(item=>item.date==d1?.toString().slice(0,15))
@@ -81,12 +107,14 @@ function RightMain({addpop,setpop}:RightMain) {
   return (
     <>
       <div className="right">
+      
         <Routes>
-          <Route path="/" element={<Today data={today} t={t} deleteData={deleteData} addpop={addpop} setpop={setpop} editData={editData} edit={edit} setEdit={setEdit}/>} />
-          <Route path="/inbox" element={<Inbox data={data} t={t} deleteData={deleteData} addpop={addpop} setpop={setpop} editData={editData} edit={edit} setEdit={setEdit}/>} />
-          <Route path="/today" element={<Today data={today} t={t} deleteData={deleteData} addpop={addpop} setpop={setpop} editData={editData} edit={edit} setEdit={setEdit}/>} />
+          <Route path="/" element={<Today data={today} t={t} deleteData={deleteData} addpop={addpop} setpop={setpop} editData={editData} edit={edit} setEdit={setEdit} editid={editid} uploadData={uploadData}/>} />
+          <Route path="/inbox" element={<Inbox data={data} t={t} deleteData={deleteData} addpop={addpop} setpop={setpop} editData={editData} edit={edit} setEdit={setEdit} editid={editid} uploadData={uploadData}/>} />
+          <Route path="/today" element={<Today data={today} t={t} deleteData={deleteData} addpop={addpop} setpop={setpop} editData={editData} edit={edit} setEdit={setEdit} editid={editid} uploadData={uploadData}/>} />
           <Route path="/upcoming" element={<Upcoming />} />
         </Routes>
+        
       </div>
     </>
   );

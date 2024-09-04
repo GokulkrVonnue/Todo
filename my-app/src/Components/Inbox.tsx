@@ -4,6 +4,7 @@ import AddSection from "./AddSection";
 import AddPopup from "./AddPopup";
 import AddedContent from "./AddedContent";
 import Addcont from "./Addcont";
+import EditTask from "./EditTask";
 type  ValuePiece = Date|null
 type DayType = ValuePiece | [ValuePiece, ValuePiece];
 interface Task {
@@ -26,8 +27,10 @@ type Inbox = {
     editData:(x:number)=>void
     edit:Boolean
     setEdit:(x:Boolean)=>void
+    editid:number
+    uploadData:(o:Task1)=>void
 };
-function Inbox({ data, t, deleteData ,addpop,setpop,editData,edit,setEdit}: Inbox) {
+function Inbox({ data, t, deleteData ,addpop,setpop,editData,edit,setEdit,editid,uploadData}: Inbox) {
     // window.addEventListener('click',()=>{
     //     if(addpop){
     //         setpop(false)
@@ -91,14 +94,21 @@ function Inbox({ data, t, deleteData ,addpop,setpop,editData,edit,setEdit}: Inbo
                     />
                 )}
             </div>
+            <div className="popupAdded">
+                {edit && (
+                    <EditTask  t={t} dateset={today} changeToday={changeToday} day={day} onChange={onChange} onClickDay={onClickDay} edit={edit}
+                    setEdit={setEdit} editid={editid} uploadData={uploadData}/>
+                )}
+            </div>
 
             <div className="tasktask">
                 {!pop&&(
                     <div className="adtas">
                         <div>
-                            <img src="./img/svgexport-18.svg" alt="" />
+                            <img src="./img/addtask.svg" alt="" />
                         </div>
                         <p onClick={() => {
+                            setEdit(false)
                             
                             setpop1(!pop)}}>Add task</p>
                     </div>

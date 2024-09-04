@@ -751,3 +751,95 @@ abbr{
 .editandadd:hover .edit{
   display: block;
 }
+/* .ItemVeiw{
+  width: 700px;
+  height: 700px;
+  background-color: rgb(114, 110, 110);
+  position: absolute;
+  top: 0;
+
+} */
+
+.dateandprio{
+  display: flex;
+  position: relative;
+}
+
+.priority{
+  display: flex;
+
+  gap: 5px;
+  /* width: 84px; */
+  padding: 3px;
+  padding-right: 5px;
+  padding-left: 7px;
+  padding-top: 5px;
+  border: 1px solid rgb(218, 212, 212);
+  border-radius: 7px;
+  margin-top: 15px;
+  margin-left: 10px;
+  cursor: pointer;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+}
+.priority p{
+  font-size: 12px;
+  margin-top: -4px;
+  color:  #6b6d6c;
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, Noto, Oxygen-Sans, Ubuntu, Cantrell, "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+}
+.priority .p4{
+  margin-top: 1px;
+}
+.removeFlag{
+  /* margin-top: 2px; */
+}
+.flags{
+  width: 120px;
+  height: 100px;
+  border: 1px solid gray;
+  position: absolute;
+  top: 50px;
+  border-radius: 10px;
+  background-color: white;
+  left: 85px;
+  z-index: 1;
+  padding: 5px;
+  
+}
+.priority1{
+  display: flex;
+
+  gap: 5px;
+  /* width: 84px; */
+
+  padding-top: 5px;
+  
+  border-radius: 7px;
+  /* margin-top: 15px; */
+  margin-left: 5px;
+  cursor: pointer;
+  height: 20px;
+  /* justify-content: center; */
+  align-items: center;
+
+}
+.priority1 p{
+  font-size: 12px;
+  margin-top: -4px;
+  color:  #2a2c2b;
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, Noto, Oxygen-Sans, Ubuntu, Cantrell, "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+}
+.flagandtick{
+  display: flex;
+  gap:20px ;
+  
+}
+.tick{
+  display: flex;
+  position: relative;
+  top: -5px;
+}

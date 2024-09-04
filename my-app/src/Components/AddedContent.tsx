@@ -23,8 +23,8 @@ function AddedContent({ task, des, deleteData, id, date,editData,popevent,setpop
   // console.log(data)
   return (
     <>
-      <div className="editandadd">
-        <div>
+      <div className="editandadd" onClick={()=>console.log(id)}>
+        <div >
         <div className="item">
           <div className="radiobutton" onClick={() => deleteData(id)}>
             <div className="tick">
@@ -48,8 +48,9 @@ function AddedContent({ task, des, deleteData, id, date,editData,popevent,setpop
           </div>
         }</div>
         <div className="edit" onClick={()=>{
+          setpopevent(false)
           editData(id)
-          setpopevent(!popevent)
+          
 
           }}>
           <img src="./img/Edit.svg" alt="" />

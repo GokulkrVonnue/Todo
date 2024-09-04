@@ -7,6 +7,9 @@ import Calender from "./SelectCalander";
 import TodayImg from "./TodayImg";
 import SelectCalander from "./SelectCalander";
 import Addcont from "./Addcont";
+import EditTask from "./EditTask";
+import ItemVeiw from "./ItemVeiw";
+
 interface Task {
     id:number,
     taskName: string;
@@ -28,6 +31,8 @@ type Today = {
     editData:(x:number)=>void
     edit:Boolean
     setEdit:(x:Boolean)=>void
+    editid:number|null
+    uploadData:(o:Task1)=>void
     
 };
 type  ValuePiece = Date|null
@@ -35,7 +40,7 @@ type DayType = ValuePiece | [ValuePiece, ValuePiece];
 
 
 
-function Today({ data, t ,deleteData,addpop,setpop,editData,edit,setEdit}: Today) {
+function Today({ data, t ,deleteData,addpop,setpop,editData,edit,setEdit,editid,uploadData}: Today) {
     // window.addEventListener('click',()=>{
     //     if(addpop){
     //         setpop(false)
@@ -91,19 +96,29 @@ function Today({ data, t ,deleteData,addpop,setpop,editData,edit,setEdit}: Today
                     setEdit={setEdit}/>
                 )}
             </div>
+            <div className="popupAdded">
+                {edit && (
+                    <EditTask  t={t} dateset={today} changeToday={changeToday} day={day} onChange={onChange} onClickDay={onClickDay} edit={edit}
+                    setEdit={setEdit} editid={editid} uploadData={uploadData}/>
+                )}
+            </div>
+            
             <div className="tasktask">
                 {!popevent && (
                     <div className="ai">
                         <div>
-                            <img src="./img/svgexport-18.svg" alt="" />
+                            <img src="./img/addtask.svg" alt="" />
                         </div>
-                        <p onClick={() => setpopevent(!popevent)}>Add task</p>
+                        <p onClick={() =>{
+                            setEdit(false)
+                             setpopevent(!popevent)}}>Add task</p>
                     </div>
                 )}
             </div>
             <div className="resultAdded"></div>
 
             {data.length==0&&<TodayImg />}
+            <ItemVeiw/>
         </div>
     );
 }
