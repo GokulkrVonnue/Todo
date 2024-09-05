@@ -1,29 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 function AddSection() {
-  const [addsection,setSection]=useState<Boolean>(false)
-  function display(){
+  const [addsection, setSection] = useState<Boolean>(false);
+  function display() {
     // alert("hi")
-    setSection(!addsection)
-  
-
+    setSection(!addsection);
   }
-  function undisplay(){
+  function undisplay() {
     // alert("lo")
-    setSection(!addsection)
-
+    setSection(!addsection);
   }
   return (
-    <div className='sep'>
-      <div className='gy'> 
-                 
-        <div className="separator" onMouseEnter={()=>display()} onMouseLeave={()=>undisplay()}>Add section</div>
-
-
+    <div className="sep">
+      <div className="gy">
+        <div
+          className="separator"
+          onMouseEnter={() => display()}
+          onMouseLeave={() => undisplay()}
+        >
+          Add section
+        </div>
       </div>
-
     </div>
-  )
+  );
 }
 
-export default AddSection
+export default AddSection;

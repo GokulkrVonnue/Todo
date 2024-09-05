@@ -1,23 +1,25 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-type Links={
-  addpop:Boolean
-  setpop:(x:Boolean)=>void
-}
+type Links = {
+  addpop: Boolean;
+  setpop: (x: Boolean) => void;
+};
 
-function Links({addpop,setpop}:Links) {
-    
+function Links({ addpop, setpop }: Links) {
   return (
     <div className="link">
-      
-        <div className="linktask" onClick={(e)=>{
-        e.stopPropagation()
-          setpop(!addpop)}}>
-          <img src="./img/svgexport-6.svg" alt="" />
-          <span className="m">Add task</span>
-        </div>
-      
-      <NavLink to="/search" >
+      <div
+        className="linktask"
+        onClick={(e) => {
+          e.stopPropagation();
+          setpop(!addpop);
+        }}
+      >
+        <img src="./img/svgexport-6.svg" alt="" />
+        <span className="m">Add task</span>
+      </div>
+
+      <NavLink to="/search">
         <div className="linktask1">
           <img src="./img/svgexport-7.svg" alt="" />
           <span className="Search">Search</span>
@@ -48,7 +50,6 @@ function Links({addpop,setpop}:Links) {
           <span className="Search">Filter& label</span>
         </div>
       </NavLink>
-      
     </div>
   );
 }

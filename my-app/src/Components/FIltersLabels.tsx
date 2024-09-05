@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function FIltersLabels() {
-    return (
-        <div>
-                filters
-        </div>
-    )
+  return <div>filters</div>;
 }
 
-export default FIltersLabels
+export default FIltersLabels;

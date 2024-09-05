@@ -1,15 +1,12 @@
-import React from 'react'
-
-
+import React from "react";
 
 function Modal() {
-    function onClose(){
-        console.log("hi")
-    }
+  function onClose() {
+    console.log("hi");
+  }
   return (
     <div>
       <div>
-
         <button onClick={onClose}>X</button>
       </div>
     </div>
@@ -49,4 +46,4 @@ function Modal() {
 
 // export default Modal;
 
-export default Modal
+export default Modal;

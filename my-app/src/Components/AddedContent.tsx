@@ -12,54 +12,72 @@ type AddedContent = {
   des: string;
   deleteData: (id: number) => void;
   date?: string;
-  editData:(id:number)=>void
-  popevent:Boolean
-  setpopevent:(x:boolean)=>void
-  
+  editData: (id: number) => void;
+  popevent: Boolean;
+  setpopevent: (x: boolean) => void;
 };
 
-function AddedContent({ task, des, deleteData, id, date,editData,popevent,setpopevent}: AddedContent) {
-  let d = new Date()
+function AddedContent({
+  task,
+  des,
+  deleteData,
+  id,
+  date,
+  editData,
+  popevent,
+  setpopevent,
+}: AddedContent) {
+  let d = new Date();
   // let day=d.getDate()
   // console.log(data)
-  let navi=useNavigate()
+  let navi = useNavigate();
   return (
     <>
-      <div className="editandadd" onClick={(e)=>{
-        e.stopPropagation()
-        navi(`/task/${id}`)}}>
-        <div >
-        <div className="item">
-          <div className="radiobutton" onClick={(e) => {
-            e.stopPropagation()
-            deleteData(id)}}>
-            <div className="tick">
-              <img src="./img/svgexport-18 (1).svg" alt="" />
+      <div
+        className="editandadd"
+        onClick={(e) => {
+          e.stopPropagation();
+          navi(`/task/${id}`);
+        }}
+      >
+        <div>
+          <div className="item">
+            <div
+              className="radiobutton"
+              onClick={(e) => {
+                e.stopPropagation();
+                deleteData(id);
+              }}
+            >
+              <div className="tick">
+                <img src="./img/svgexport-18 (1).svg" alt="" />
+              </div>
             </div>
+            <label htmlFor="" className="tasknamehhhh">
+              {task}
+            </label>
           </div>
-          <label htmlFor="" className="tasknamehhhh">
-            {task}
+          <label htmlFor="" className="descree">
+            {des}
           </label>
-        </div>
-        <label htmlFor="" className="descree">
-          {des}
-        </label>
-        {date &&
-          <div className="date">
-            <div>
-              <img src="./img/svgexport-16.svg" alt="" />
+          {date && (
+            <div className="date">
+              <div>
+                <img src="./img/svgexport-16.svg" alt="" />
+              </div>
+              {date == d.toString().slice(3, 10) ? <p>Today</p> : <p>{date}</p>}
+              {/* <p>{date}</p> */}
             </div>
-            {date == d.toString().slice(3, 10) ? <p>Today</p> : <p>{date}</p>}
-            {/* <p>{date}</p> */}
-          </div>
-        }</div>
-        <div className="edit" onClick={(e)=>{
-          e.stopPropagation()
-          setpopevent(false)
-          editData(id)
-          
-
-          }}>
+          )}
+        </div>
+        <div
+          className="edit"
+          onClick={(e) => {
+            e.stopPropagation();
+            setpopevent(false);
+            editData(id);
+          }}
+        >
           <img src="./img/Edit.svg" alt="" />
         </div>
       </div>
