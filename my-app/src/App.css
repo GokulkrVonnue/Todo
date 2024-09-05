@@ -3,18 +3,36 @@
 * {
   margin: 0;
   padding: 0;
+  /* border: 1px solid red; */
+}
+.App{
+  /* background-color: yellow; */
+  height: 92.5vh;
 }
 .main{
   display: flex;
   width: 100%;
-}
-.sidePanel{
-  background-color: #fbfaf8;
-  height: 100vh;
-  width: 280px;
+  height: 100%;
   animation-name: drive1;
   animation-duration: .2s;
   animation-fill-mode: forwards;
+  
+  /* background-color: red; */
+}
+.mainoff{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  animation-name: drive;
+  animation-duration: .2s;
+  animation-fill-mode: forwards;
+
+}
+.sidePanel{
+  background-color: #fbfaf8;
+  min-height: 100vh;
+  min-width: 280px;
+ 
   /* display: none; */
   
 
@@ -22,29 +40,29 @@
   
 }
 .sidePanelOff{
+  background-color:white;
+  min-height: 100vh;
+  min-width: 280px;
   
-  height: 100vh;
-  width: 280px;
-  animation-name: drive ;
-  animation-duration: .2s;
-  animation-fill-mode: forwards;
-
-  
-  
+ 
 }
 @keyframes drive{
   from{ transform: translateX(0)}
-  to{transform: translateX(-220px)}
+  to{transform: translateX(-225px)}
 }
-/* @keyframes drive{
-  from{ visibility: visible;}
-  to{visibility: hidden;}
-} */
 
 @keyframes drive1{
   from{ transform: translateX(-220px)}
   to{transform: translateX(0px)}
 }
+/* @keyframes drive{
+  from{display: none;}
+  to{display: block;}
+}
+@keyframes drive1{
+  from{display: block}
+  to{display: none;}
+} */
 /* .sidePanel:hover{
   transform: translateX(-220px)
 } */
@@ -247,6 +265,7 @@ a{
 } */
  .right{
   width: 80%;
+  height: 100%;
   
   
   flex-grow: 1;
@@ -452,13 +471,17 @@ p.how{
 }
 .inputadd{
   width: 100%;
+  
+  
 }
 .inputadd input.taskname{
-  width: 97%;
+  width: 98%;
+  flex-grow: 1;
   padding-top: 13px;
   padding-left: 10px;
   border: none;
   margin: 2px;
+  border-radius: 10px;
 
   outline: none;
   font-size: 14px;
@@ -470,7 +493,7 @@ p.how{
 
 }
 .inputadd input.description{
-  width: 97%;
+  width: 98%;
   padding-top: 5px;
   padding-left: 15px;
   border: none;
@@ -838,8 +861,37 @@ abbr{
   gap:20px ;
   
 }
-.tick{
+.tick1{
   display: flex;
   position: relative;
   top: -5px;
+}
+
+.TaskId{
+  
+  background-color: rgb(73, 72, 72);
+  position: absolute;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: .5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.taskVeiw{
+  width: 60%;
+  height: 800px;
+  background-color: white;
+  
+
+}
+.searchitem{
+  background-color: red;
+}
+
+@media screen and (max-width: 750px) {
+
+  
 }

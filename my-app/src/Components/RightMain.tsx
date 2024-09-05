@@ -1,10 +1,12 @@
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import AddTask from "./AddTask";
 import Inbox from "./Inbox";
 import Today from "./Today";
 import Upcoming from "./Upcoming";
+import FIltersLabels from "./FIltersLabels";
+import { TAsk } from "./TAsk";
 interface Task {
   id:number,
   taskName: string;
@@ -109,10 +111,13 @@ function uploadData(value:Task1){
       <div className="right">
       
         <Routes>
-          <Route path="/" element={<Today data={today} t={t} deleteData={deleteData} addpop={addpop} setpop={setpop} editData={editData} edit={edit} setEdit={setEdit} editid={editid} uploadData={uploadData}/>} />
+        
+          <Route path="/" element={<Navigate to="/today" replace/>} />
           <Route path="/inbox" element={<Inbox data={data} t={t} deleteData={deleteData} addpop={addpop} setpop={setpop} editData={editData} edit={edit} setEdit={setEdit} editid={editid} uploadData={uploadData}/>} />
           <Route path="/today" element={<Today data={today} t={t} deleteData={deleteData} addpop={addpop} setpop={setpop} editData={editData} edit={edit} setEdit={setEdit} editid={editid} uploadData={uploadData}/>} />
           <Route path="/upcoming" element={<Upcoming />} />
+          <Route path="/task/:UserId" element={<TAsk />} />
+          <Route path="/filters" element={<FIltersLabels/>} />
         </Routes>
         
       </div>

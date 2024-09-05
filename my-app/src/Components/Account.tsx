@@ -23,8 +23,8 @@ function Account({ sidepanelOperation,sidePanel}: Account) {
     let a = 0;
     // window.addEventListener("click", dd);
     function dd() {
-        let sel=document.querySelector(".active")
-        sel?.classList.toggle("add")
+        // let sel=document.querySelector(".active")
+        // sel?.classList.toggle("add")
         if(accounthov){
             setAccounthov(false)
         }

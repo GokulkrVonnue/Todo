@@ -9,6 +9,7 @@ import SelectCalander from "./SelectCalander";
 import Addcont from "./Addcont";
 import EditTask from "./EditTask";
 import ItemVeiw from "./ItemVeiw";
+import SearchTask from "./SearchTask";
 
 interface Task {
     id:number,
@@ -115,6 +116,7 @@ function Today({ data, t ,deleteData,addpop,setpop,editData,edit,setEdit,editid,
                     </div>
                 )}
             </div>
+            {/* <SearchTask/> */}
             <div className="resultAdded"></div>
 
             {data.length==0&&<TodayImg />}

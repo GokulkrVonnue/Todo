@@ -22,7 +22,7 @@ type AddPopup={
     setpopevent:(x:boolean)=>void
     t:(o:Task1)=>void
     dateset:String;
-    changeToday?:()=>void
+    changeToday:()=>void
     day?: DayType;
 onChange?: (value: DayType) => void;
 onClickDay:()=>void;
@@ -81,6 +81,7 @@ const AddPopup = ({popevent,setpopevent,t,dateset,changeToday,day,onChange,onCli
           taskName.value=""
           descr.value=""
           settask(false)
+          
           
     }
     

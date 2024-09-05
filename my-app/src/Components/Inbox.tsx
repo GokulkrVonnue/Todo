@@ -40,7 +40,7 @@ function Inbox({ data, t, deleteData ,addpop,setpop,editData,edit,setEdit,editid
 
     // })
     console.log(addpop)
-    const [today,setDoday]=useState<String>("no due")
+    const [today,setDoday]=useState<String>("nodue")
     const [pop, setpop1] = useState<boolean>(false);
     const [day, onChange] = useState<DayType>(new Date());
     // let dateset = "no due";

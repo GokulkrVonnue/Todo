@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 // type AddedContent={
 //     tname:string;
 //     tdesc:string;
@@ -21,12 +22,17 @@ function AddedContent({ task, des, deleteData, id, date,editData,popevent,setpop
   let d = new Date()
   // let day=d.getDate()
   // console.log(data)
+  let navi=useNavigate()
   return (
     <>
-      <div className="editandadd" onClick={()=>console.log(id)}>
+      <div className="editandadd" onClick={(e)=>{
+        e.stopPropagation()
+        navi(`/task/${id}`)}}>
         <div >
         <div className="item">
-          <div className="radiobutton" onClick={() => deleteData(id)}>
+          <div className="radiobutton" onClick={(e) => {
+            e.stopPropagation()
+            deleteData(id)}}>
             <div className="tick">
               <img src="./img/svgexport-18 (1).svg" alt="" />
             </div>
@@ -47,7 +53,8 @@ function AddedContent({ task, des, deleteData, id, date,editData,popevent,setpop
             {/* <p>{date}</p> */}
           </div>
         }</div>
-        <div className="edit" onClick={()=>{
+        <div className="edit" onClick={(e)=>{
+          e.stopPropagation()
           setpopevent(false)
           editData(id)
           
