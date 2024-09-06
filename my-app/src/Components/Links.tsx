@@ -21,7 +21,9 @@ function Links({ addpop, setpop, searchpop, setsearchpop }: Links) {
         <span className="m">Add task</span>
       </div>
 
-      <div className="linktask1" onClick={() => setsearchpop(!searchpop)}>
+      <div className="linktask1" onClick={(e) => {
+        e.stopPropagation()
+        setsearchpop(!searchpop)}}>
         <img src="./img/svgexport-7.svg" alt="" />
         <span className="Search">Search</span>
       </div>

@@ -5,6 +5,7 @@ import AddPopup from "./AddPopup";
 import AddedContent from "./AddedContent";
 import Addcont from "./Addcont";
 import EditTask from "./EditTask";
+import SearchTask from "./SearchTask";
 type ValuePiece = Date | null;
 type DayType = ValuePiece | [ValuePiece, ValuePiece];
 interface Task {
@@ -29,6 +30,8 @@ type Inbox = {
   setEdit: (x: Boolean) => void;
   editid: number;
   uploadData: (o: Task1) => void;
+  searchpop:Boolean
+setsearchpop:(x:Boolean)=>void
 };
 function Inbox({
   data,
@@ -41,6 +44,9 @@ function Inbox({
   setEdit,
   editid,
   uploadData,
+  searchpop,
+setsearchpop
+
 }: Inbox) {
   // window.addEventListener('click',()=>{
   //     if(addpop){
@@ -148,6 +154,7 @@ function Inbox({
           </div>
         )}
       </div>
+      {searchpop&&<SearchTask searchpop={searchpop}  setsearchpop={ setsearchpop}/>}
 
       <div className="resultAdded"></div>
       <AddSection />

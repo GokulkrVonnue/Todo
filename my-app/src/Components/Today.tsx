@@ -154,7 +154,7 @@ function Today({
           </div>
         )}
       </div>
-      {searchpop&&<SearchTask />}
+      {searchpop&&<SearchTask searchpop={searchpop}  setsearchpop={ setsearchpop}/>}
       <div className="resultAdded"></div>
 
       {data.length == 0 && <TodayImg />}

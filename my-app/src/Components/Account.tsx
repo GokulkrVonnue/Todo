@@ -22,11 +22,20 @@ function Account({ sidepanelOperation, sidePanel }: Account) {
   const accountUser: string = "gokulkr";
   
   
-  function dd() {
+  function sidepanelClose() {
+    if(sidePanel){
     let sel = document.querySelector(".active");
-    sel?.classList.toggle("add");
+    sel?.classList.add("add");
+    }
+    if(!sidePanel){
+        let sel = document.querySelector(".active");
+    sel?.classList.remove("add");
+
+    }
+    
     if (accounthov) {
       setAccounthov(false);
+
     } else {
       sidepanelOperation(!sidePanel);
     }
@@ -72,7 +81,7 @@ function Account({ sidepanelOperation, sidePanel }: Account) {
               />
             </div>
             <div>
-              <img src="./img/sidepanel.svg" alt="" onClick={() => dd()} />
+              <img src="./img/sidepanel.svg" alt="" onClick={() => sidepanelClose()} />
             </div>
           </div>
         </div>

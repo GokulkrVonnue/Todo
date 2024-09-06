@@ -1,18 +1,27 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 interface Task {
   id: number;
   taskName: string;
   description: string;
   date: String;
+  
 }
-const SearchTask = () => {
+type SearchTask={
+  searchpop:Boolean
+  setsearchpop:(x:Boolean)=>void
+}
+const SearchTask = ({searchpop,setsearchpop}:SearchTask) => {
   let navigatetoitem = useNavigate();
+  
   window.addEventListener('click',()=>{
-
+    
+    if(searchpop){
+      
+      setsearchpop(false)
+    }
   })
-
   let [searchData, setSearchData] = useState<Task[]>();
   let [search, setSearch] = useState<Task[]>();
   let [wordtomatch, setWord] = useState<string>("");
@@ -41,25 +50,91 @@ const SearchTask = () => {
   return (
     <div className="searchItem">
       <input
-      className="searchText"
+        className="searchText"
         type="text"
+        onClick={(e)=>{
+          e.stopPropagation()
+        }}
+        placeholder="Search for a type command"
         onChange={(e) => {
           console.log("word is changing", searchData);
           console.log(e.target.value);
           setWord(e.target.value);
           console.log(findmatch(wordtomatch));
-          
 
           setSearch(findmatch(e.target.value));
         }}
       />
       <div className="serachitem">
+       
         {wordtomatch &&
-          search?.map((item) => (
-            <li onClick={() => navigatetoitem(`/task/${item.id}`)}>
-              {item.taskName}
-            </li>
-          ))}
+        
+          search?.map((item) => {
+            return (
+              <>
+              <label className="searchNavigation">Tasks</label>
+                <div className="Searchitemcontent" onClick={() => navigatetoitem(`/task/${item.id}`)}>
+                  <div
+                    className="radiobutton"
+                    
+                  ></div>
+                  <label htmlFor="" className="tasknamehhhh">
+                    {item.taskName}
+                  </label>
+                </div>
+                
+              </>
+            );
+          },
+          )}
+          <div>
+            <label className="searchNavigation">Navigation</label>
+          <div className="searchNavigation" onClick={()=>{
+            navigatetoitem(`/inbox`)
+            setsearchpop(false)
+
+
+          }}>
+          <img src="./img/svgexport-8.svg" alt="" />
+          <span className="Search">Go to Inbox</span>
+        </div>
+      
+      
+        <div className="searchNavigation" onClick={()=>{
+            navigatetoitem(`/today`)
+            setsearchpop(false)
+
+
+          }}>
+          <img src="./img/svgexport-9.svg" alt="" />
+          <span className="Search">Go to Today</span>
+        </div>
+      
+      
+        <div className="searchNavigation" onClick={()=>{
+            navigatetoitem(`/inbox`)
+            setsearchpop(false)
+
+
+          }}>
+          <img src="./img/svgexport-10.svg" alt="" />
+          <span className="Search">Go to Upcoming</span>
+        </div>
+
+      
+        <div className="searchNavigation" onClick={()=>{
+            navigatetoitem(`/filters`)
+            setsearchpop(false)
+
+
+          }}>
+          <img src="./img/svgexport-11.svg" alt="" />
+          <span className="Search">Go to Filter& label</span>
+        </div>
+          </div>
+          
+        
+    
       </div>
     </div>
   );

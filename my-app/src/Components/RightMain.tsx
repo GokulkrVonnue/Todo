@@ -111,6 +111,8 @@ function RightMain({ addpop, setpop, searchpop, setsearchpop }: RightMain) {
                 setEdit={setEdit}
                 editid={editid}
                 uploadData={uploadData}
+                searchpop={searchpop}
+                setsearchpop={setsearchpop}
               />
             }
           />
