@@ -7,6 +7,7 @@ type Account = {
   sidepanelOperation: (x: boolean) => void;
   sidePanel: Boolean;
 };
+
 function Account({ sidepanelOperation, sidePanel }: Account) {
   const [accounthov, setAccounthov] = useState<Boolean>(false);
   window.addEventListener("click", () => m());
@@ -15,14 +16,15 @@ function Account({ sidepanelOperation, sidePanel }: Account) {
       setAccounthov(false);
     }
   }
+
   let navigate = useNavigate();
 
   const accountUser: string = "gokulkr";
-  let a = 0;
-  // window.addEventListener("click", dd);
+  
+  
   function dd() {
-    // let sel=document.querySelector(".active")
-    // sel?.classList.toggle("add")
+    let sel = document.querySelector(".active");
+    sel?.classList.toggle("add");
     if (accounthov) {
       setAccounthov(false);
     } else {
@@ -30,7 +32,7 @@ function Account({ sidepanelOperation, sidePanel }: Account) {
     }
   }
 
-  let d = (
+  let AccountToolTipData = (
     <div className="accountName" onClick={accountHover}>
       <p className="username">{accountUser}</p>
 
@@ -59,7 +61,7 @@ function Account({ sidepanelOperation, sidePanel }: Account) {
                        
                         <img src="./img/svgexport-3.svg" alt="" className="AccountMore" />
                     </div> */}
-          <ToolTip data={d} label={lebel} />
+          <ToolTip data={AccountToolTipData} label={lebel} />
 
           <div className="notificationandside">
             <div>

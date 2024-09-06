@@ -887,10 +887,23 @@ abbr{
   
 
 }
-.searchitem{
-  background-color: red;
+.searchItem{
+  
+  width: 650px;
+  height: 450px;
+  background-color: rgb(252, 250, 250);
+  position: absolute;
+  top: 220px;
+  left: 600px;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1),-10px -10px 10px rgba(0, 0, 0, 0.1);
 }
-
+.searchText{
+  width: 98%;
+  border: none;
+  outline: none;
+  
+}
 @media screen and (max-width: 750px) {
 
   

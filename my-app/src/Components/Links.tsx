@@ -3,9 +3,11 @@ import { NavLink } from "react-router-dom";
 type Links = {
   addpop: Boolean;
   setpop: (x: Boolean) => void;
+  searchpop: Boolean;
+  setsearchpop: (x: Boolean) => void;
 };
 
-function Links({ addpop, setpop }: Links) {
+function Links({ addpop, setpop, searchpop, setsearchpop }: Links) {
   return (
     <div className="link">
       <div
@@ -19,12 +21,10 @@ function Links({ addpop, setpop }: Links) {
         <span className="m">Add task</span>
       </div>
 
-      <NavLink to="/search">
-        <div className="linktask1">
-          <img src="./img/svgexport-7.svg" alt="" />
-          <span className="Search">Search</span>
-        </div>
-      </NavLink>
+      <div className="linktask1" onClick={() => setsearchpop(!searchpop)}>
+        <img src="./img/svgexport-7.svg" alt="" />
+        <span className="Search">Search</span>
+      </div>
 
       <NavLink to="/inbox">
         <div className="linktask1">

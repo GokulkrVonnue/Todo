@@ -20,7 +20,7 @@ interface Task1 {
 }
 type Inbox = {
   data: Task[];
-  t: (value: Task1) => void;
+  postData: (value: Task1) => void;
   deleteData: (id: number) => void;
   addpop: Boolean;
   setpop: (x: Boolean) => void;
@@ -32,7 +32,7 @@ type Inbox = {
 };
 function Inbox({
   data,
-  t,
+  postData,
   deleteData,
   addpop,
   setpop,
@@ -88,7 +88,7 @@ function Inbox({
         <Addcont
           popevent={addpop}
           setpopevent={setpop}
-          t={t}
+          postData={postData}
           dateset={today}
           changeToday={changeToday}
           day={day}
@@ -102,7 +102,7 @@ function Inbox({
           <AddPopup
             popevent={pop}
             setpopevent={setpop1}
-            t={t}
+            postData={postData}
             dateset={today}
             changeToday={changeToday}
             day={day}
@@ -116,7 +116,7 @@ function Inbox({
       <div className="popupAdded">
         {edit && (
           <EditTask
-            t={t}
+            postData={postData}
             dateset={today}
             changeToday={changeToday}
             day={day}

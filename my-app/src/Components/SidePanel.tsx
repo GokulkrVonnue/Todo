@@ -5,25 +5,38 @@ import { Link, Route, Routes } from "react-router-dom";
 import Links from "./Links";
 
 type SidePanel = {
-    sidepanelOperation: (x: boolean) => void;
-    sidePanel: Boolean;
-    addpop:Boolean;
-    setpop:(x:Boolean)=>void
+  sidepanelOperation: (x: boolean) => void;
+  sidePanel: Boolean;
+  addpop: Boolean;
+  setpop: (x: Boolean) => void;
+  searchpop: Boolean;
+  setsearchpop: (x: Boolean) => void;
 };
 
-const SidePanel = ({ sidepanelOperation, sidePanel,addpop,setpop}: SidePanel) => {
-    return (
-        <>
-            <div className={sidePanel ? "sidePanel" : "sidePanelOff"}>
-                <Account
-                    sidepanelOperation={sidepanelOperation}
-                    sidePanel={sidePanel}
-                />
-                <Links addpop={addpop} setpop={setpop}/>
-            </div>
-            
-        </>
-    );
+const SidePanel = ({
+  sidepanelOperation,
+  sidePanel,
+  addpop,
+  setpop,
+  searchpop,
+  setsearchpop
+}: SidePanel) => {
+  return (
+    <>
+      <div className={sidePanel ? "sidePanel" : "sidePanelOff"}>
+        <Account
+          sidepanelOperation={sidepanelOperation}
+          sidePanel={sidePanel}
+        />
+        <Links
+          addpop={addpop}
+          setpop={setpop}
+          searchpop={searchpop}
+          setsearchpop={setsearchpop}
+        />
+      </div>
+    </>
+  );
 };
 
 export default SidePanel;

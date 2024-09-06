@@ -25,7 +25,7 @@ interface Task1 {
 }
 type Today = {
   data: Task[];
-  t: (value: Task1) => void;
+  postData: (value: Task1) => void;
   deleteData: (id: number) => void;
   addpop: Boolean;
   setpop: (x: Boolean) => void;
@@ -34,13 +34,15 @@ type Today = {
   setEdit: (x: Boolean) => void;
   editid: number | null;
   uploadData: (o: Task1) => void;
+  searchpop: Boolean;
+  setsearchpop: (x: Boolean) => void;
 };
 type ValuePiece = Date | null;
 type DayType = ValuePiece | [ValuePiece, ValuePiece];
 
 function Today({
   data,
-  t,
+  postData,
   deleteData,
   addpop,
   setpop,
@@ -49,14 +51,11 @@ function Today({
   setEdit,
   editid,
   uploadData,
+  searchpop,
+  setsearchpop
+  
 }: Today) {
-  // window.addEventListener('click',()=>{
-  //     if(addpop){
-  //         setpop(false)
-
-  //     }
-
-  // })
+  
   console.log("today is rendering", data.length);
   const [today, setDoday] = useState<String>("today");
   const [day, onChange] = useState<DayType>(new Date());
@@ -96,7 +95,7 @@ function Today({
         <Addcont
           popevent={addpop}
           setpopevent={setpop}
-          t={t}
+          postData={postData}
           dateset={today}
           changeToday={changeToday}
           day={day}
@@ -110,7 +109,7 @@ function Today({
           <AddPopup
             popevent={popevent}
             setpopevent={setpopevent}
-            t={t}
+            postData={postData}
             dateset={today}
             changeToday={changeToday}
             day={day}
@@ -124,7 +123,7 @@ function Today({
       <div className="popupAdded">
         {edit && (
           <EditTask
-            t={t}
+            postData={postData}
             dateset={today}
             changeToday={changeToday}
             day={day}
@@ -155,7 +154,7 @@ function Today({
           </div>
         )}
       </div>
-      <SearchTask />
+      {searchpop&&<SearchTask />}
       <div className="resultAdded"></div>
 
       {data.length == 0 && <TodayImg />}

@@ -19,7 +19,7 @@ interface Task1 {
 type AddPopup = {
   popevent: boolean;
   setpopevent: (x: boolean) => void;
-  t: (o: Task1) => void;
+  postData: (o: Task1) => void;
   dateset: String;
   changeToday: () => void;
   day?: DayType;
@@ -33,7 +33,7 @@ const d = new Date();
 const AddPopup = ({
   popevent,
   setpopevent,
-  t,
+  postData,
   dateset,
   changeToday,
   day,
@@ -80,7 +80,7 @@ const AddPopup = ({
 
     //   console.log(o)
     console.log("rendrring o", o);
-    t(o);
+    postData(o);
     taskName.value = "";
     descr.value = "";
     settask(false);

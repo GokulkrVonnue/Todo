@@ -16,7 +16,7 @@ interface Task1 {
   date: String;
 }
 type EditTask = {
-  t: (o: Task1) => void;
+  postData: (o: Task1) => void;
   dateset: String;
   changeToday?: () => void;
   day?: DayType;
@@ -29,7 +29,7 @@ type EditTask = {
 };
 
 function EditTask({
-  t,
+  postData,
   dateset,
   changeToday,
   day,

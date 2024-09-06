@@ -9,6 +9,9 @@ interface Task {
 }
 const SearchTask = () => {
   let navigatetoitem = useNavigate();
+  window.addEventListener('click',()=>{
+
+  })
 
   let [searchData, setSearchData] = useState<Task[]>();
   let [search, setSearch] = useState<Task[]>();
@@ -36,14 +39,16 @@ const SearchTask = () => {
     });
   }
   return (
-    <div>
+    <div className="searchItem">
       <input
+      className="searchText"
         type="text"
         onChange={(e) => {
           console.log("word is changing", searchData);
           console.log(e.target.value);
           setWord(e.target.value);
           console.log(findmatch(wordtomatch));
+          
 
           setSearch(findmatch(e.target.value));
         }}

@@ -18,7 +18,7 @@ interface Task1 {
 type Addcont = {
   popevent: Boolean;
   setpopevent: (x: boolean) => void;
-  t: (o: Task1) => void;
+  postData: (o: Task1) => void;
   dateset: String;
   changeToday?: () => void;
   day?: DayType;
@@ -30,7 +30,7 @@ const d = new Date();
 const Addcont = ({
   popevent,
   setpopevent,
-  t,
+  postData,
   dateset,
   changeToday,
   day,
@@ -61,7 +61,7 @@ const Addcont = ({
 
     //   console.log(o)
     console.log("rendrring o", o);
-    t(o);
+    postData(o);
     taskName.value = "";
     descr.value = "";
     settask(false);

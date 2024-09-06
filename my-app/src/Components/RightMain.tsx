@@ -21,11 +21,13 @@ interface Task1 {
 type RightMain = {
   addpop: Boolean;
   setpop: (x: Boolean) => void;
+  searchpop: Boolean;
+  setsearchpop: (x: Boolean) => void;
 };
 interface UserContextType {
   priority: string;
 }
-function RightMain({ addpop, setpop }: RightMain) {
+function RightMain({ addpop, setpop, searchpop, setsearchpop }: RightMain) {
   let PriorityofFlag = React.createContext("");
 
   const [priority, setPriority] = useState<string>("p4");
@@ -39,7 +41,7 @@ function RightMain({ addpop, setpop }: RightMain) {
   let [edit, setEdit] = useState<Boolean>(false);
   let [editid, seteditid] = useState<number>(0);
 
-  function t(value: Task1) {
+  function postData(value: Task1) {
     axios
       .post("http://localhost:3005", {
         taskName: value.task,
@@ -100,7 +102,7 @@ function RightMain({ addpop, setpop }: RightMain) {
             element={
               <Inbox
                 data={data}
-                t={t}
+                postData={postData}
                 deleteData={deleteData}
                 addpop={addpop}
                 setpop={setpop}
@@ -117,7 +119,7 @@ function RightMain({ addpop, setpop }: RightMain) {
             element={
               <Today
                 data={today}
-                t={t}
+                postData={postData}
                 deleteData={deleteData}
                 addpop={addpop}
                 setpop={setpop}
@@ -126,6 +128,8 @@ function RightMain({ addpop, setpop }: RightMain) {
                 setEdit={setEdit}
                 editid={editid}
                 uploadData={uploadData}
+                searchpop={searchpop}
+                setsearchpop={setsearchpop}
               />
             }
           />

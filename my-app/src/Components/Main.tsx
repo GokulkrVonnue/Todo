@@ -6,6 +6,7 @@ function Main() {
   const [sidepanel, setSidepanel] = useState<Boolean>(true);
 
   const [addpop, setpop] = useState<Boolean>(false);
+  const [serachpop,setsearchpop]=useState<Boolean>(false)
   useEffect(() => {
     function MediaQueryChange(x: MediaQueryList) {
       if (x.matches) {
@@ -43,8 +44,11 @@ function Main() {
         sidePanel={sidepanel}
         addpop={addpop}
         setpop={setpop}
+        searchpop={serachpop}
+        setsearchpop={setsearchpop}
       />
-      <RightMain addpop={addpop} setpop={setpop} />
+      <RightMain addpop={addpop} setpop={setpop} searchpop={serachpop}
+        setsearchpop={setsearchpop} />
     </div>
   );
 }
