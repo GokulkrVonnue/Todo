@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import AddTask from "./AddTask";
+
 import Inbox from "./Inbox";
 import Today from "./Today";
 import Upcoming from "./Upcoming";
 import FIltersLabels from "./FIltersLabels";
 import { TAsk } from "./TAsk";
+import FliterVeiw from "./FliterVeiw";
 interface Task {
   id: number;
   taskName: string;
@@ -18,67 +19,64 @@ interface Task1 {
   descr: string;
   date: String;
 }
+interface FIlterss {
+  id: number;
+  filterName: string;
+  filterquery: string;
+}
 type RightMain = {
   addpop: Boolean;
   setpop: (x: Boolean) => void;
   searchpop: Boolean;
   setsearchpop: (x: Boolean) => void;
+  seteditid: (x: number) => void;
+  setEdit: (x: Boolean) => void;
+  getData: () => void;
+  data: Task[];
+  postData: (value: Task1) => void;
+  editid: number;
+  edit: Boolean;
+  deleteData: (x: number) => void;
+  filternameAndquery: (name: string, query: string) => void;
+  filternameData: FIlterss[];
+  deleteFilter: (x: number) => void;
+  LabelNameset: (x: string) => void;
 };
 interface UserContextType {
   priority: string;
 }
-function RightMain({ addpop, setpop, searchpop, setsearchpop }: RightMain) {
+function RightMain({
+  addpop,
+  setpop,
+  searchpop,
+  setsearchpop,
+  seteditid,
+  setEdit,
+  getData,
+  data,
+  postData,
+  editid,
+  edit,
+  deleteData,
+  filternameAndquery,
+  filternameData,
+  deleteFilter,
+  LabelNameset,
+}: RightMain) {
   let PriorityofFlag = React.createContext("");
 
   const [priority, setPriority] = useState<string>("p4");
+  let daynow = new Date();
 
-  useEffect(() => {
-    getData();
-  }, []);
-
-  let d1 = new Date();
-  let [data, setData] = useState<Task[]>([]);
-  let [edit, setEdit] = useState<Boolean>(false);
-  let [editid, seteditid] = useState<number>(0);
-
-  function postData(value: Task1) {
-    axios
-      .post("http://localhost:3005", {
-        taskName: value.task,
-        description: value.descr,
-        date: value.date,
-      })
-      .then(function (res) {
-        console.log(res);
-        getData();
-      });
-    // console.log(newTask)
-  }
-  async function getData() {
-    try {
-      await axios.get("http://localhost:3005").then((res) => {
-        console.log(res.data);
-        setData(res.data);
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  function deleteData(id: number) {
-    console.log("id is", id);
-    axios.delete(`http://localhost:3005/${id}`).then(() => {
-      console.log("Deleted");
-      getData();
-    });
-  }
   function editData(id: number) {
     seteditid(id);
     alert(`edit Clicked ${id}`);
     setEdit(true);
   }
+
   function uploadData(value: Task1) {
     axios
-      .put(`http://localhost:3005/${editid}`, {
+      .put(`http://localhost:3005/todo/${editid}`, {
         taskName: value.task,
         description: value.descr,
         date: value.date,
@@ -90,7 +88,7 @@ function RightMain({ addpop, setpop, searchpop, setsearchpop }: RightMain) {
     console.log(value);
   }
 
-  let today = data.filter((item) => item.date == d1?.toString().slice(0, 15));
+  let today = data.filter((item) => item.date == daynow?.toString().slice(0, 15));
 
   return (
     <>
@@ -132,12 +130,24 @@ function RightMain({ addpop, setpop, searchpop, setsearchpop }: RightMain) {
                 uploadData={uploadData}
                 searchpop={searchpop}
                 setsearchpop={setsearchpop}
+                totalData={data}
               />
             }
           />
           <Route path="/upcoming" element={<Upcoming />} />
           <Route path="/task/:UserId" element={<TAsk />} />
-          <Route path="/filters" element={<FIltersLabels />} />
+          <Route
+            path="/filters"
+            element={
+              <FIltersLabels
+                filternameAndquery={filternameAndquery}
+                filternameData={filternameData}
+                deleteFilter={deleteFilter}
+                LabelNameset={LabelNameset}
+              />
+            }
+          />
+          <Route path="/filterveiw/:id" element={<FliterVeiw data={data} />} />
         </Routes>
       </div>
     </>

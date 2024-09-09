@@ -36,6 +36,7 @@ type Today = {
   uploadData: (o: Task1) => void;
   searchpop: Boolean;
   setsearchpop: (x: Boolean) => void;
+  totalData: Task[];
 };
 type ValuePiece = Date | null;
 type DayType = ValuePiece | [ValuePiece, ValuePiece];
@@ -52,10 +53,9 @@ function Today({
   editid,
   uploadData,
   searchpop,
-  setsearchpop
-  
+  setsearchpop,
+  totalData,
 }: Today) {
-  
   console.log("today is rendering", data.length);
   const [today, setDoday] = useState<String>("today");
   const [day, onChange] = useState<DayType>(new Date());
@@ -154,7 +154,13 @@ function Today({
           </div>
         )}
       </div>
-      {searchpop&&<SearchTask searchpop={searchpop}  setsearchpop={ setsearchpop}/>}
+      {searchpop && (
+        <SearchTask
+          searchpop={searchpop}
+          setsearchpop={setsearchpop}
+          data={totalData}
+        />
+      )}
       <div className="resultAdded"></div>
 
       {data.length == 0 && <TodayImg />}

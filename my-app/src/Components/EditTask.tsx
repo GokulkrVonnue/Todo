@@ -48,7 +48,7 @@ function EditTask({
   });
   async function getEditData() {
     try {
-      await axios.get(`http://localhost:3005/${editid}`).then((res) => {
+      await axios.get(`http://localhost:3005/todo/${editid}`).then((res) => {
         console.log(res.data[0].date);
         setValue((prevalue) => ({
           ...prevalue,

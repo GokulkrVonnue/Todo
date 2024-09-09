@@ -46,11 +46,14 @@ const Addcont = ({
       descr: "",
       date: "",
     };
+
     let taskName = document.querySelector(".taskname") as HTMLInputElement;
     let descr = document.querySelector(".description") as HTMLInputElement;
+
     if (taskName.value) {
       o.task = taskName.value;
     }
+
     if (descr.value) {
       o.descr = descr.value;
     }
@@ -59,7 +62,6 @@ const Addcont = ({
       ? (o.date = `${day?.toString().slice(0, 15)}`)
       : (o.date = "");
 
-    //   console.log(o)
     console.log("rendrring o", o);
     postData(o);
     taskName.value = "";
@@ -87,6 +89,7 @@ const Addcont = ({
         />
         <input type="text" placeholder="Description" className="description" />
       </div>
+
       <SetDate
         dateset={dateset}
         changeToday={changeToday}
@@ -94,6 +97,7 @@ const Addcont = ({
         onChange={onChange}
         onClickDay={onClickDay}
       />
+
       <hr className="datehr" />
       <div className="addandcancel">
         <div className="addinbox">

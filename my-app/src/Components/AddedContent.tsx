@@ -1,10 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-// type AddedContent={
-//     tname:string;
-//     tdesc:string;
-
-// }
 
 type AddedContent = {
   id: number;
@@ -27,10 +22,10 @@ function AddedContent({
   popevent,
   setpopevent,
 }: AddedContent) {
-  let d = new Date();
-  // let day=d.getDate()
-  // console.log(data)
+  let dayNow = new Date();
+
   let navi = useNavigate();
+
   return (
     <>
       <div
@@ -65,7 +60,11 @@ function AddedContent({
               <div>
                 <img src="./img/svgexport-16.svg" alt="" />
               </div>
-              {date == d.toString().slice(3, 10) ? <p>Today</p> : <p>{date}</p>}
+              {date == dayNow.toString().slice(3, 10) ? (
+                <p>Today</p>
+              ) : (
+                <p>{date}</p>
+              )}
               {/* <p>{date}</p> */}
             </div>
           )}

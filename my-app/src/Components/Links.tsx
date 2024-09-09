@@ -1,13 +1,26 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-type Links = {
+import { NavLink, useLocation } from "react-router-dom";
+interface Task {
+  id: number;
+  taskName: string;
+  description: string;
+  date: String;
+}
+type LinksProp = {
   addpop: Boolean;
   setpop: (x: Boolean) => void;
   searchpop: Boolean;
   setsearchpop: (x: Boolean) => void;
+  data: Task[];
 };
 
-function Links({ addpop, setpop, searchpop, setsearchpop }: Links) {
+function Links({ addpop, setpop, searchpop, setsearchpop, data }: LinksProp) {
+  let param = useLocation().pathname.slice(1);
+  console.log(param);
+  let todayDate = new Date().toString().slice(0, 15);
+  console.log(todayDate);
+  let todayLength = data.filter((item) => item.date === todayDate).length;
+
   return (
     <div className="link">
       <div
@@ -17,41 +30,65 @@ function Links({ addpop, setpop, searchpop, setsearchpop }: Links) {
           setpop(!addpop);
         }}
       >
-        <img src="./img/svgexport-6.svg" alt="" />
+        <img src="/img/svgexport-6.svg" alt="" />
         <span className="m">Add task</span>
       </div>
 
-      <div className="linktask1" onClick={(e) => {
-        e.stopPropagation()
-        setsearchpop(!searchpop)}}>
-        <img src="./img/svgexport-7.svg" alt="" />
+      <div
+        className="linktask1"
+        onClick={(e) => {
+          e.stopPropagation();
+          setsearchpop(!searchpop);
+        }}
+      >
+        <img src="/img/svgexport-7.svg" alt="" />
         <span className="Search">Search</span>
       </div>
 
       <NavLink to="/inbox">
         <div className="linktask1">
-          <img src="./img/svgexport-8.svg" alt="" />
-          <span className="Search">Inbox</span>
+          <img src="/img/svgexport-8.svg" alt="" />
+          <div className="todayandlengthinbox">
+            <span className="Search">Inbox</span>
+            <span
+              className={
+                param === "inbox" ? "selectedred" : "todayDatalengthinbox"
+              }
+            >
+              {data.length === 0 ? "" : data.length}
+            </span>
+          </div>
         </div>
       </NavLink>
+
       <NavLink to="/today">
         <div className="linktask1">
-          <img src="./img/svgexport-9.svg" alt="" />
-          <span className="Search">Today</span>
+          <img src="/img/svgexport-9.svg" alt="" />
+          <div className="todayandlength">
+            <span className="Search">Today</span>
+            <span
+              className={param === "today" ? "selectedred" : "todayDatalength"}
+            >
+              {todayLength === 0 ? "" : todayLength}
+            </span>
+          </div>
         </div>
       </NavLink>
+
       <NavLink to="/upcoming">
         <div className="linktask1">
-          <img src="./img/svgexport-10.svg" alt="" />
+          <img src="/img/svgexport-10.svg" alt="" />
           <span className="Search">Upcoming</span>
         </div>
       </NavLink>
-      <NavLink to="/filters">
+
+      <NavLink to="/filters" end>
         <div className="linktask1">
-          <img src="./img/svgexport-11.svg" alt="" />
+          <img src="/img/svgexport-11.svg" alt="" />
           <span className="Search">Filter& label</span>
         </div>
       </NavLink>
+      
     </div>
   );
 }

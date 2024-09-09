@@ -138,12 +138,7 @@ const AddPopup = ({
           >
             Cancel
           </button>
-          {/* {!taskcontent&&<button className="addone" disabled >Add task</button>}
-                    {taskcontent&&<button className="addone1" onClick={()=>addtoTAsk()}>
-                        Add task
-                    </button>
-                    
-                    } */}
+          
           {buttons()}
         </div>
       </div>

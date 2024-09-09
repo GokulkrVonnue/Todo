@@ -20,22 +20,21 @@ function Account({ sidepanelOperation, sidePanel }: Account) {
   let navigate = useNavigate();
 
   const accountUser: string = "gokulkr";
-  
-  
-  function sidepanelClose() {
-    if(sidePanel){
-    let sel = document.querySelector(".active");
-    sel?.classList.add("add");
-    }
-    if(!sidePanel){
-        let sel = document.querySelector(".active");
-    sel?.classList.remove("add");
 
+  function sidepanelClose() {
+
+    if (sidePanel) {
+      let sel = document.querySelector(".active");
+      sel?.classList.add("add");
     }
     
+    if (!sidePanel) {
+      let sel = document.querySelector(".active");
+      sel?.classList.remove("add");
+    }
+
     if (accounthov) {
       setAccounthov(false);
-
     } else {
       sidepanelOperation(!sidePanel);
     }
@@ -46,21 +45,23 @@ function Account({ sidepanelOperation, sidePanel }: Account) {
       <p className="username">{accountUser}</p>
 
       {accounthov && <AccountHover accountuser={accountUser} />}
-      <img src="./img/svgexport-3.svg" alt="" className="AccountMore" />
+      <img src="/img/svgexport-3.svg" alt="" className="AccountMore" />
     </div>
   );
 
   let lebel = <label className="toolTip">Daily goal: 4/5 tasks</label>;
+
   function accountHover(e: React.MouseEvent<HTMLParagraphElement, MouseEvent>) {
     e.stopPropagation();
     console.log("hi");
     setAccounthov(!accounthov);
   }
+  
   return (
     <div className="Account">
       <div className="AccountInfo">
         <div className="AccountInfo">
-          <img src="./img/svgexport-2.png" alt="" className="circle" />
+          <img src="/img/svgexport-2.png" alt="" className="circle" />
           <p className="logoletter">G</p>
         </div>
 
@@ -75,13 +76,17 @@ function Account({ sidepanelOperation, sidePanel }: Account) {
           <div className="notificationandside">
             <div>
               <img
-                src="./img/notification.svg"
+                src="/img/notification.svg"
                 alt=""
                 onClick={() => navigate("/notifications")}
               />
             </div>
             <div>
-              <img src="./img/sidepanel.svg" alt="" onClick={() => sidepanelClose()} />
+              <img
+                src="/img/sidepanel.svg"
+                alt=""
+                onClick={() => sidepanelClose()}
+              />
             </div>
           </div>
         </div>

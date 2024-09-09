@@ -12,7 +12,7 @@ type SelectCalander = {
   onClickDay: () => void;
 };
 function SelectCalander({ day, onChange, onClickDay }: SelectCalander) {
-  // const [day, onChange] = useState<ValuePiece|[ValuePiece,ValuePiece]>(new Date());
+  
 
   return (
     <div className="c">

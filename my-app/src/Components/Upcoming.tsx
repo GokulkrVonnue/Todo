@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function Upcoming() {
-    return (
-        <div>Upcoming</div>
-    )
+  return <div>Upcoming</div>;
 }
 
-export default Upcoming
+export default Upcoming;

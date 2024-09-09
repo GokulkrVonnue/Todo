@@ -4,7 +4,7 @@ type ToolTip = {
   label: React.ReactNode;
 };
 
-function ToolTip({ data ,label}: ToolTip) {
+function ToolTip({ data, label }: ToolTip) {
   const [toolTi, setTooltip] = useState<Boolean>(false);
   function mouseEnter() {
     setTooltip(!toolTi);
@@ -15,8 +15,8 @@ function ToolTip({ data ,label}: ToolTip) {
   }
   return (
     <>
-      <div onMouseEnter={() => mouseEnter()} onMouseOut={() => mouseOut()} >
-        {data }
+      <div onMouseEnter={() => mouseEnter()} onMouseOut={() => mouseOut()}>
+        {data}
       </div>
       {/* {toolTi&&label} */}
     </>

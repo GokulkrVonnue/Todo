@@ -46,7 +46,7 @@ const EditPop = ({
   const [editData, setDataEdit] = useState<Task>();
   async function getEditData() {
     try {
-      await axios.get("http://localhost:3005").then((res) => {
+      await axios.get("http://localhost:3005/todo").then((res) => {
         console.log(res.data);
         setDataEdit(res.data);
       });

@@ -30,8 +30,8 @@ type Inbox = {
   setEdit: (x: Boolean) => void;
   editid: number;
   uploadData: (o: Task1) => void;
-  searchpop:Boolean
-setsearchpop:(x:Boolean)=>void
+  searchpop: Boolean;
+  setsearchpop: (x: Boolean) => void;
 };
 function Inbox({
   data,
@@ -45,8 +45,7 @@ function Inbox({
   editid,
   uploadData,
   searchpop,
-setsearchpop
-
+  setsearchpop,
 }: Inbox) {
   // window.addEventListener('click',()=>{
   //     if(addpop){
@@ -154,7 +153,13 @@ setsearchpop
           </div>
         )}
       </div>
-      {searchpop&&<SearchTask searchpop={searchpop}  setsearchpop={ setsearchpop}/>}
+      {searchpop && (
+        <SearchTask
+          searchpop={searchpop}
+          setsearchpop={setsearchpop}
+          data={data}
+        />
+      )}
 
       <div className="resultAdded"></div>
       <AddSection />
