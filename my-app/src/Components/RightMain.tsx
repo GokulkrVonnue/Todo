@@ -37,7 +37,7 @@ type RightMain = {
   editid: number;
   edit: Boolean;
   deleteData: (x: number) => void;
-  filternameAndquery: (name: string, query: string) => void;
+  filternameAndquery: (name: string, query: string | undefined) => void;
   filternameData: FIlterss[];
   deleteFilter: (x: number) => void;
   LabelNameset: (x: string) => void;
@@ -88,7 +88,9 @@ function RightMain({
     console.log(value);
   }
 
-  let today = data.filter((item) => item.date == daynow?.toString().slice(0, 15));
+  let today = data.filter(
+    (item) => item.date == daynow?.toString().slice(0, 15)
+  );
 
   return (
     <>

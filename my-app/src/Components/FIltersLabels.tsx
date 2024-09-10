@@ -10,7 +10,7 @@ interface Filterss {
   filterquery: string;
 }
 type FIltersLabelsProp = {
-  filternameAndquery: (name: string, query: string) => void;
+  filternameAndquery: (name: string, query: string | undefined) => void;
   filternameData: Filterss[];
   deleteFilter: (x: number) => void;
   LabelNameset: (x: string) => void;

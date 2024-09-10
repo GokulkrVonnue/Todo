@@ -8,7 +8,6 @@ type LabelPopProp = {
   // filternameAndquery:(name:string,query:string)=>void
 };
 function LabelPop({ labelpop, setLabel, LabelNameset }: LabelPopProp) {
-    
   window.addEventListener("click", () => {
     if (labelpop) {
       setLabel(false);

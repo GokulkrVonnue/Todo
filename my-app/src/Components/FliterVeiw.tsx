@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AddedContent from "./AddedContent";
-import FilterInbox from "./FilterInbox";
 
 interface FIlterss {
   id: number;
@@ -26,12 +25,13 @@ function FliterVeiw({ data }: FliterProps) {
   console.log(data);
 
   let { id } = useParams();
+
   async function filterPage() {
     try {
       await axios.get(`http://localhost:3005/filter/${id}`).then((res) => {
         console.log(res.data[0].filterquery);
         setFilteredData(
-          data.filter((item) => (item.date = res.data[0].filterquery))
+          data.filter((item) => item.date === res.data[0].filterquery)
         );
         setfilterveiw(res.data[0]);
       });
@@ -42,18 +42,19 @@ function FliterVeiw({ data }: FliterProps) {
 
   useEffect(() => {
     filterPage();
-  }, []);
+  }, [data]);
 
-  
   return (
     <>
       <div className="FilterName">
         <div className="Namedetails">{filterveiw?.filterName}</div>
-        {data
-          .filter((item) => item.date == filterveiw?.filterquery)
-          .map((ite) => (
-            <li>{ite.taskName}</li>
+      </div>
+      <div className="FilterList">
+        <div className="FilterListView">
+          {filteredData?.map((item) => (
+            <li>{item.taskName}</li>
           ))}
+        </div>
       </div>
     </>
   );

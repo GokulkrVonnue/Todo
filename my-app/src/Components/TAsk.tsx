@@ -35,7 +35,7 @@ export const TAsk = () => {
       <div className="taskVeiw">
         <h1>{taskveiwData?.taskName}</h1>
         <h2>{taskveiwData?.description}</h2>
-        {taskveiwData?.date == dateString ? (
+        {taskveiwData?.date === dateString ? (
           <h3>Today</h3>
         ) : (
           <h3>{taskveiwData?.date.slice(3, 10)}</h3>

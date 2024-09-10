@@ -1,6 +1,4 @@
-import { hover } from "@testing-library/user-event/dist/hover";
-import { getValue } from "@testing-library/user-event/dist/utils";
-import React, { useState } from "react";
+import React from "react";
 import Calendar from "react-calendar";
 // import 'react-calendar/dist/Calendar.css';
 type ValuePiece = Date | null;
@@ -12,11 +10,13 @@ type SelectCalander = {
   onClickDay: () => void;
 };
 function SelectCalander({ day, onChange, onClickDay }: SelectCalander) {
-  
-
   return (
     <div className="c">
-      <Calendar onChange={onChange} value={day} onClickDay={onClickDay} />
+      <Calendar
+        onChange={onChange}
+        value={day}
+        onClickDay={() => onClickDay()}
+      />
     </div>
   );
 }

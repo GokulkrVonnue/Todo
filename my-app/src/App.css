@@ -1025,6 +1025,9 @@ top: -8px;
 }
 .FilterName{
   padding: 15px;
+  
+  display: flex;
+  justify-content: center;
 }
 .FilterQuery{
   padding: 15px;
@@ -1111,6 +1114,18 @@ justify-content: space-between;}
   height: 15px;
   margin-top: 3px;
 
+}
+.filtercalender{
+  position: absolute;
+  left: 450px;
+}
+.FilterList{
+  display: flex;
+  justify-content: center;
+}
+.FilterListView{
+  width: 770px;
+  margin-top: 20px;
 }
 @media screen and (max-width: 750px) {
 

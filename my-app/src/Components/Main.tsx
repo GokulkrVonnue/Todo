@@ -88,7 +88,7 @@ function Main() {
     });
   }
 
-  function filternameAndquery(name: string, query: string) {
+  function filternameAndquery(name: string, query: string | undefined) {
     axios
       .post("http://localhost:3005/filter", {
         filterName: name,

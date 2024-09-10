@@ -22,12 +22,11 @@ function Account({ sidepanelOperation, sidePanel }: Account) {
   const accountUser: string = "gokulkr";
 
   function sidepanelClose() {
-
     if (sidePanel) {
       let sel = document.querySelector(".active");
       sel?.classList.add("add");
     }
-    
+
     if (!sidePanel) {
       let sel = document.querySelector(".active");
       sel?.classList.remove("add");
@@ -56,7 +55,7 @@ function Account({ sidepanelOperation, sidePanel }: Account) {
     console.log("hi");
     setAccounthov(!accounthov);
   }
-  
+
   return (
     <div className="Account">
       <div className="AccountInfo">

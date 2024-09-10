@@ -88,7 +88,6 @@ function Links({ addpop, setpop, searchpop, setsearchpop, data }: LinksProp) {
           <span className="Search">Filter& label</span>
         </div>
       </NavLink>
-      
     </div>
   );
 }

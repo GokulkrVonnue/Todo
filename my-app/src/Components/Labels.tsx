@@ -5,10 +5,9 @@ type Labels = {
 };
 
 function Labels({ LabelNameset }: Labels) {
-
   let [arrow, setarrow] = useState<Boolean>(true);
   let [labelpop, setLabel] = useState<Boolean>(false);
-  
+
   return (
     <div className="fillterss">
       <div className="addingfilters">

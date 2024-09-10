@@ -32,7 +32,7 @@ function SetDate({
   }
   let dates = new Date();
   console.log(dates);
-  
+
   return dateset == "today" ? (
     <div className="date">
       <div>

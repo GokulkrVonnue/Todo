@@ -45,7 +45,7 @@ const SearchTask = ({ searchpop, setsearchpop, data }: SearchTask) => {
       return item.taskName.match(regex);
     });
   }
-  
+
   return (
     <div className="searchItem">
       <input

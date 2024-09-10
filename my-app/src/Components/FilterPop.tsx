@@ -1,41 +1,51 @@
 import React, { ChangeEvent, useState } from "react";
+import SelectCalander from "./SelectCalander";
+import FilterCalaender from "./FilterCalaender";
+import FilterCalander from "./FilterCalaender";
 
 type FilterProp = {
   filterpop: Boolean;
   setFilter: (x: Boolean) => void;
-  filternameAndquery:(name:string,query:string)=>void
+  filternameAndquery: (name: string, query: string | undefined) => void;
 };
+type ValuePiece = Date | null;
+type DayType = ValuePiece | [ValuePiece, ValuePiece];
+function FilterPop({ setFilter, filterpop, filternameAndquery }: FilterProp) {
+  let [filcontent, setFilcontent] = useState<string>("");
 
-function FilterPop({ setFilter, filterpop,filternameAndquery }: FilterProp) {
-    let [filcontent,setFilcontent]=useState<string>("")
-    let [filterquery,setfilterquery]=useState<string>("")
-    function buttonSelect(){
-        if(filcontent && filterquery){
-            return(
-                <>
-                <button className="addone1" onClick={()=>filternameAndquery(filcontent,filterquery)}>Add</button>
-                </>
-            )
-        }
-        else{
-            return(
-                <button className="addone" disabled>Add</button>
-            )
-        }
+  let [iscalander, setcalander] = useState<Boolean>(false);
+  let [todayDate, settheDay] = useState<DayType>(new Date());
+  function dayClick() {
+    setcalander(false);
+  }
+
+  function buttonSelect() {
+    if (filcontent) {
+      return (
+        <>
+          <button
+            className="addone1"
+            onClick={() =>
+              filternameAndquery(filcontent, todayDate?.toString().slice(0, 15))
+            }
+          >
+            Add
+          </button>
+        </>
+      );
+    } else {
+      return (
+        <button className="addone" disabled>
+          Add
+        </button>
+      );
     }
-    
-    function TextNamefilter(e:ChangeEvent<HTMLInputElement>){
-        setFilcontent(e.target.value)
-         
-         
- 
-     }    
-     function queryName(e:ChangeEvent<HTMLInputElement>){
-        setfilterquery(e.target.value)
-         
-         
- 
-     }
+  }
+
+  function TextNamefilter(e: ChangeEvent<HTMLInputElement>) {
+    setFilcontent(e.target.value);
+  }
+
   window.addEventListener("click", () => {
     if (filterpop) {
       setFilter(false);
@@ -55,15 +65,35 @@ function FilterPop({ setFilter, filterpop,filternameAndquery }: FilterProp) {
       </div>
       <div className="FilterName">
         <label>Name</label>
-        <input type="text" onClick={(e)=>e.stopPropagation()} onChange={TextNamefilter} className="filname"/>
+        <input
+          type="text"
+          onClick={(e) => e.stopPropagation()}
+          onChange={TextNamefilter}
+          className="filname"
+        />
       </div>
       <div className="FilterQuery">
-        <label>Query</label>
-        <input type="text" onClick={(e)=>e.stopPropagation()} onChange={queryName} className="filquery"/>
+        <label>Query/Select date</label>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            setcalander(true);
+          }}
+        >
+          {todayDate?.toString().slice(3, 10)}
+        </button>
       </div>
+
+      {iscalander && (
+        <FilterCalander
+          day={todayDate}
+          onChange={settheDay}
+          dayClick={dayClick}
+        />
+      )}
       <div>
         <button className="cancel">cancel</button>
-        
+
         {buttonSelect()}
       </div>
     </div>
