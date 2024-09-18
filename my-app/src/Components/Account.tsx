@@ -9,15 +9,15 @@ type Account = {
 };
 
 function Account({ sidepanelOperation, sidePanel }: Account) {
+  let navigate = useNavigate();
   const [accounthov, setAccounthov] = useState<Boolean>(false);
-  window.addEventListener("click", () => m());
-  function m() {
+  window.addEventListener("click", () => clickHandle());
+  function clickHandle() {
     if (accounthov) {
       setAccounthov(false);
     }
   }
 
-  let navigate = useNavigate();
 
   const accountUser: string = "gokulkr";
 

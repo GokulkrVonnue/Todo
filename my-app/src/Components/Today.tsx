@@ -162,6 +162,7 @@ function Today({
         />
       )}
       <div className="resultAdded"></div>
+  
 
       {data.length == 0 && <TodayImg />}
       <ItemVeiw />
