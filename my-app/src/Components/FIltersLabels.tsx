@@ -1,26 +1,17 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import FilterPop from "./FilterPop";
-import { type } from "os";
+
 import FliterContent from "./FliterContent";
 import Labels from "./Labels";
+import { FIltersLabelsProp } from "../TypesDefines/types";
 
-interface Filterss {
-  id: number;
-  filterName: string;
-  filterquery: string;
-}
-type FIltersLabelsProp = {
-  filternameAndquery: (name: string, query: string | undefined) => void;
-  filternameData: Filterss[];
-  deleteFilter: (x: number) => void;
-  LabelNameset: (x: string) => void;
-};
 function FIltersLabels({
   filternameAndquery,
   filternameData,
   deleteFilter,
   LabelNameset,
 }: FIltersLabelsProp) {
+  
   let [arrow, setarrow] = useState<Boolean>(true);
   let [filterpop, setFilter] = useState<Boolean>(false);
   return (

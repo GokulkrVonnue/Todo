@@ -2,13 +2,9 @@ import React, { useState } from "react";
 import ToolTip from "./ToolTip";
 import AccountHover from "./AccountHover";
 import { useNavigate } from "react-router-dom";
+import { AccountProp } from "../TypesDefines/types";
 
-type Account = {
-  sidepanelOperation: (x: boolean) => void;
-  sidePanel: Boolean;
-};
-
-function Account({ sidepanelOperation, sidePanel }: Account) {
+function Account({ sidepanelMinimize, sidePanel }: AccountProp) {
   let navigate = useNavigate();
   const [accounthov, setAccounthov] = useState<Boolean>(false);
   window.addEventListener("click", () => clickHandle());
@@ -18,24 +14,13 @@ function Account({ sidepanelOperation, sidePanel }: Account) {
     }
   }
 
-
   const accountUser: string = "gokulkr";
 
   function sidepanelClose() {
-    if (sidePanel) {
-      let sel = document.querySelector(".active");
-      sel?.classList.add("add");
-    }
-
-    if (!sidePanel) {
-      let sel = document.querySelector(".active");
-      sel?.classList.remove("add");
-    }
-
     if (accounthov) {
       setAccounthov(false);
     } else {
-      sidepanelOperation(!sidePanel);
+      sidepanelMinimize(!sidePanel);
     }
   }
 
@@ -65,11 +50,6 @@ function Account({ sidepanelOperation, sidePanel }: Account) {
         </div>
 
         <div className="accountUser">
-          {/* <div className="accountName" onClick={()=>accountHover()}>
-                        <p className="username">{accountUser}</p>
-                       
-                        <img src="./img/svgexport-3.svg" alt="" className="AccountMore" />
-                    </div> */}
           <ToolTip data={AccountToolTipData} label={lebel} />
 
           <div className="notificationandside">

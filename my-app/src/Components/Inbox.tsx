@@ -6,33 +6,8 @@ import AddedContent from "./AddedContent";
 import Addcont from "./Addcont";
 import EditTask from "./EditTask";
 import SearchTask from "./SearchTask";
-type ValuePiece = Date | null;
-type DayType = ValuePiece | [ValuePiece, ValuePiece];
-interface Task {
-  id: number;
-  taskName: string;
-  description: string;
-  date: String;
-}
-interface Task1 {
-  task: string;
-  descr: string;
-  date: String;
-}
-type Inbox = {
-  data: Task[];
-  postData: (value: Task1) => void;
-  deleteData: (id: number) => void;
-  addpop: Boolean;
-  setpop: (x: Boolean) => void;
-  editData: (x: number) => void;
-  edit: Boolean;
-  setEdit: (x: Boolean) => void;
-  editid: number;
-  uploadData: (o: Task1) => void;
-  searchpop: Boolean;
-  setsearchpop: (x: Boolean) => void;
-};
+import { DayType, InboxProp } from "../TypesDefines/types";
+
 function Inbox({
   data,
   postData,
@@ -46,19 +21,11 @@ function Inbox({
   uploadData,
   searchpop,
   setsearchpop,
-}: Inbox) {
-  // window.addEventListener('click',()=>{
-  //     if(addpop){
-  //         setpop(false)
-
-  //     }
-
-  // })
-  console.log(addpop);
+}: InboxProp) {
   const [today, setDoday] = useState<String>("nodue");
   const [pop, setpop1] = useState<boolean>(false);
   const [day, onChange] = useState<DayType>(new Date());
-  // let dateset = "no due";
+
   function changeToday() {
     setDoday("nodue");
   }
@@ -121,7 +88,6 @@ function Inbox({
       <div className="popupAdded">
         {edit && (
           <EditTask
-            postData={postData}
             dateset={today}
             changeToday={changeToday}
             day={day}

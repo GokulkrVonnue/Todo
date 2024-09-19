@@ -1,16 +1,5 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
-
-type AddedContent = {
-  id: number;
-  task: string;
-  des: string;
-  deleteData: (id: number) => void;
-  date?: string;
-  editData: (id: number) => void;
-  popevent: Boolean;
-  setpopevent: (x: boolean) => void;
-};
+import { AddedContentProp } from "../TypesDefines/types";
 
 function AddedContent({
   task,
@@ -19,12 +8,10 @@ function AddedContent({
   id,
   date,
   editData,
-  popevent,
   setpopevent,
-}: AddedContent) {
+}: AddedContentProp) {
+  let navigate = useNavigate();
   let dayNow = new Date();
-
-  let navi = useNavigate();
 
   return (
     <>
@@ -32,7 +19,7 @@ function AddedContent({
         className="editandadd"
         onClick={(e) => {
           e.stopPropagation();
-          navi(`/task/${id}`);
+          navigate(`/task/${id}`);
         }}
       >
         <div>
@@ -65,7 +52,6 @@ function AddedContent({
               ) : (
                 <p>{date}</p>
               )}
-              {/* <p>{date}</p> */}
             </div>
           )}
         </div>

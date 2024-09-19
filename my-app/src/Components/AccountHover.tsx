@@ -1,8 +1,6 @@
-import React from "react";
-type AccountHover = {
-  accountuser: string;
-};
-function AccountHover({ accountuser }: AccountHover) {
+import { AccountHoverProp } from "../TypesDefines/types";
+
+function AccountHover({ accountuser }: AccountHoverProp) {
   return (
     <>
       <div className="acconthov">

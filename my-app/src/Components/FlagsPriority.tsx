@@ -1,10 +1,6 @@
-import React from "react";
-type FlagsPriority = {
-  setPriority: (x: string) => void;
-  priority: string;
-};
+import { FlagsPriorityProp } from "../TypesDefines/types";
 
-function FlagsPriority({ setPriority, priority }: FlagsPriority) {
+function FlagsPriority({ setPriority, priority }: FlagsPriorityProp) {
   return (
     <div className="flags">
       <div className="priority1" onClick={() => setPriority("p1")}>

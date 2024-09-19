@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import LabelPop from "./LabelPop";
-type Labels = {
-  LabelNameset: (x: string) => void;
-};
+import { LabelsProps } from "../TypesDefines/types";
 
-function Labels({ LabelNameset }: Labels) {
+function Labels({ LabelNameset }: LabelsProps) {
   let [arrow, setarrow] = useState<Boolean>(true);
   let [labelpop, setLabel] = useState<Boolean>(false);
 

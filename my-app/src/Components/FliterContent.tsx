@@ -1,15 +1,6 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
-interface FIlterss {
-  id: number;
-  filterName: string;
-  filterquery: string;
-}
+import { FliterContentProp } from "../TypesDefines/types";
 
-type FliterContentProp = {
-  filternameData: FIlterss[];
-  deleteFilter: (x: number) => void;
-};
 function FliterContent({ filternameData, deleteFilter }: FliterContentProp) {
   let navigefilter = useNavigate();
   return (

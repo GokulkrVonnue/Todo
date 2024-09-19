@@ -1,34 +1,34 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SidePanel from "./SidePanel";
 import RightMain from "./RightMain";
-import axios from "axios";
-interface Task {
-  id: number;
-  taskName: string;
-  description: string;
-  date: String;
-}
-interface Task1 {
-  task: string;
-  descr: string;
-  date: String;
-}
-interface Filterss {
-  id: number;
-  filterName: string;
-  filterquery: string;
-}
+import { Task, Filterss, Id } from "../TypesDefines/types";
+
+import {
+  deleteData,
+  deleteFilter,
+  filternameAndquery,
+  filters,
+  getData,
+  LabelNameset,
+  postData,
+  uploadData,
+} from "../FetchItem/CustomFetch";
+
 function Main() {
-  const [sidepanel, setSidepanel] = useState<Boolean>(true);
+  const [sidepanel, sidepanelMinimize] = useState<Boolean>(true);
   const [addpop, setpop] = useState<Boolean>(false);
   const [serachpop, setsearchpop] = useState<Boolean>(false);
+  let [data, setData] = useState<Task[]>([]);
+  let [filter, setfilters] = useState<Filterss[]>([]);
+  let [edit, setEdit] = useState<Boolean>(false);
+  let [editid, seteditid] = useState<Id>(0);
 
   useEffect(() => {
     function MediaQueryChange(x: MediaQueryList) {
       if (x.matches) {
-        setSidepanel(false);
+        sidepanelMinimize(false);
       } else {
-        setSidepanel(true);
+        sidepanelMinimize(true);
       }
     }
 
@@ -48,94 +48,58 @@ function Main() {
   }, []);
 
   useEffect(() => {
-    getData();
+    fetchData();
   }, []);
 
-  let [data, setData] = useState<Task[]>([]);
-  let [filter, setfilters] = useState<Filterss[]>([]);
-  let [edit, setEdit] = useState<Boolean>(false);
-  let [editid, seteditid] = useState<number>(0);
+  const fetchData = async () => {
+    const tasks = await getData();
+    setData(tasks);
+  };
 
-  function postData(value: Task1) {
-    axios
-      .post("http://localhost:3005/todo", {
-        taskName: value.task,
-        description: value.descr,
-        date: value.date,
-      })
-      .then(function (res) {
-        console.log(res);
-        getData();
-      });
-  }
+  const handlePostData = async (value: Task) => {
+    await postData(value);
+    fetchData();
+  };
 
-  async function getData() {
-    try {
-      await axios.get("http://localhost:3005/todo").then((res) => {
-        console.log(res.data);
-        setData(res.data);
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  const handleDeleteData = async (id: Id) => {
+    await deleteData(id);
+    fetchData();
+  };
+  const uploadHandle = async (value: Task) => {
+    console.log(value);
+    await uploadData(value);
 
-  function deleteData(id: number) {
-    console.log("id is", id);
-    axios.delete(`http://localhost:3005/todo/${id}`).then(() => {
-      console.log("Deleted");
-      getData();
-    });
-  }
+    fetchData();
+  };
 
-  function filternameAndquery(name: string, query: string | undefined) {
-    axios
-      .post("http://localhost:3005/filter", {
-        filterName: name,
-        queryName: query,
-      })
-      .then(function (res) {
-        console.log(res);
-        filters();
-      });
-  }
+  const handleFilter = async (name: string, query: string | undefined) => {
+    await filternameAndquery(name, query);
+    const filtersData = await filters();
+    setfilters(filtersData);
+  };
 
-  async function filters() {
-    try {
-      await axios.get("http://localhost:3005/filter").then((res) => {
-        console.log(res.data);
-        setfilters(res.data);
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  const handleDeleteFilter = async (id: number) => {
+    await deleteFilter(id);
+    const filtersData = await filters();
+    setfilters(filtersData);
+  };
 
-  function deleteFilter(id: number) {
-    axios.delete(`http://localhost:3005/filter/${id}`).then(() => {
-      console.log("Deleted");
-      filters();
-    });
-  }
-
-  function LabelNameset(name: string) {
-    axios
-      .post("http://localhost:3005/labels", {
-        LabelName: name,
-      })
-      .then(function (res) {
-        console.log(res);
-      });
-  }
+  const handleLabels = (name: string) => {
+    LabelNameset(name);
+  };
 
   useEffect(() => {
-    filters();
+    const fetchFilters = async () => {
+      const filtersData = await filters();
+      setfilters(filtersData);
+    };
+    fetchFilters();
   }, []);
 
   return (
     <div className={sidepanel ? "main" : "mainoff"}>
       <SidePanel
-        sidepanelOperation={setSidepanel}
+        sidepanelMinimize={sidepanelMinimize}
         sidePanel={sidepanel}
         addpop={addpop}
         setpop={setpop}
@@ -144,6 +108,7 @@ function Main() {
         data={data}
       />
       <RightMain
+        setData={setData}
         addpop={addpop}
         setpop={setpop}
         searchpop={serachpop}
@@ -152,14 +117,15 @@ function Main() {
         setEdit={setEdit}
         getData={getData}
         data={data}
-        postData={postData}
+        postData={handlePostData}
         editid={editid}
         edit={edit}
-        deleteData={deleteData}
-        filternameAndquery={filternameAndquery}
+        deleteData={handleDeleteData}
+        filternameAndquery={handleFilter}
         filternameData={filter}
-        deleteFilter={deleteFilter}
-        LabelNameset={LabelNameset}
+        deleteFilter={handleDeleteFilter}
+        LabelNameset={handleLabels}
+        uploadHandle={uploadHandle}
       />
     </div>
   );

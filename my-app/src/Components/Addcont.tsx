@@ -1,31 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
-
-import Calender from "./SelectCalander";
-
 import SetDate from "./SetDate";
-type ValuePiece = Date | null;
-type DayType = ValuePiece | [ValuePiece, ValuePiece];
-interface Task {
-  id: number;
-  task: string;
-  descr: string;
-}
-interface Task1 {
-  task: string;
-  descr: string;
-  date: String;
-}
-type Addcont = {
-  popevent: Boolean;
-  setpopevent: (x: boolean) => void;
-  postData: (o: Task1) => void;
-  dateset: String;
-  changeToday?: () => void;
-  day?: DayType;
-  onChange?: (value: DayType) => void;
-  onClickDay: () => void;
-};
-const d = new Date();
+import { AddcontProp, Task } from "../TypesDefines/types";
 
 const Addcont = ({
   popevent,
@@ -36,45 +11,45 @@ const Addcont = ({
   day,
   onChange,
   onClickDay,
-}: Addcont) => {
-  const [taskcontent, settask] = useState<boolean>(false);
-  console.log("ADDcont");
+}: AddcontProp) => {
+  const [taskContent, setTaskContent] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
 
   const addtoTAsk = () => {
-    let o: Task1 = {
-      task: "",
-      descr: "",
-      date: "",
+    let postItem: Task = {
+      id: null,
+      taskName: taskContent,
+      description: description,
+      date: dateset === "today" ? `${day?.toString().slice(0, 15)}` : "",
     };
 
-    let taskName = document.querySelector(".taskname") as HTMLInputElement;
-    let descr = document.querySelector(".description") as HTMLInputElement;
-
-    if (taskName.value) {
-      o.task = taskName.value;
-    }
-
-    if (descr.value) {
-      o.descr = descr.value;
-    }
-
-    dateset == "today"
-      ? (o.date = `${day?.toString().slice(0, 15)}`)
-      : (o.date = "");
-
-    console.log("rendrring o", o);
-    postData(o);
-    taskName.value = "";
-    descr.value = "";
-    settask(false);
-    setpopevent(false);
+    console.log("rendrring postItem", postItem);
+    postData(postItem);
+    setTaskContent("");
+    setDescription("");
   };
 
-  function textevent(e: ChangeEvent<HTMLInputElement>) {
-    if (e.target.value == "") {
-      settask(false);
+  function handleTextChange(e: ChangeEvent<HTMLInputElement>) {
+    setTaskContent(e.target.value);
+  }
+
+  function handleDescriptionChange(e: ChangeEvent<HTMLInputElement>) {
+    setDescription(e.target.value);
+  }
+  
+  function buttons() {
+    if (taskContent == "") {
+      return (
+        <button className="addone" disabled>
+          Add task
+        </button>
+      );
     } else {
-      settask(true);
+      return (
+        <button className="addone1" onClick={() => addtoTAsk()}>
+          Add Task
+        </button>
+      );
     }
   }
 
@@ -85,9 +60,16 @@ const Addcont = ({
           type="text"
           placeholder="Task name"
           className="taskname"
-          onChange={textevent}
+          onChange={handleTextChange}
+          value={taskContent}
         />
-        <input type="text" placeholder="Description" className="description" />
+        <input
+          type="text"
+          placeholder="Description"
+          className="description"
+          onChange={handleDescriptionChange}
+          value={description}
+        />
       </div>
 
       <SetDate
@@ -114,16 +96,7 @@ const Addcont = ({
           <button className="cancel" onClick={() => setpopevent(!popevent)}>
             Cancel
           </button>
-          {!taskcontent && (
-            <button className="addone" disabled>
-              Add task
-            </button>
-          )}
-          {taskcontent && (
-            <button className="addone1" onClick={() => addtoTAsk()}>
-              Add task
-            </button>
-          )}
+          {buttons()}
         </div>
       </div>
     </div>

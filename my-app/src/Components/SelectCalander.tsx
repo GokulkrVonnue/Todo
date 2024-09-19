@@ -1,15 +1,7 @@
-import React from "react";
-import Calendar from "react-calendar";
-// import 'react-calendar/dist/Calendar.css';
-type ValuePiece = Date | null;
-type DayType = ValuePiece | [ValuePiece, ValuePiece];
 
-type SelectCalander = {
-  day?: DayType;
-  onChange?: (value: DayType) => void;
-  onClickDay: () => void;
-};
-function SelectCalander({ day, onChange, onClickDay }: SelectCalander) {
+import Calendar from "react-calendar";
+import { SelectCalanderProp } from "../TypesDefines/types";
+function SelectCalander({ day, onChange, onClickDay }: SelectCalanderProp) {
   return (
     <div className="c">
       <Calendar

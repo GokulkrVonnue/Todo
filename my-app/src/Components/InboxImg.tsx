@@ -1,6 +1,3 @@
-import React from "react";
-import AddSection from "./AddSection";
-
 const InboxImg = () => {
   return (
     <div className="inboximg">

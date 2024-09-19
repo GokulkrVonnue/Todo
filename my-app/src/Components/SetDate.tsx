@@ -1,14 +1,6 @@
 import React, { useState } from "react";
 import SelectCalander from "./SelectCalander";
-type ValuePiece = Date | null;
-type DayType = ValuePiece | [ValuePiece, ValuePiece];
-type Dateprop = {
-  dateset: String;
-  changeToday?: () => void;
-  day?: DayType;
-  onChange?: (value: DayType) => void;
-  onClickDay: () => void;
-};
+import { Dateprop } from "../TypesDefines/types";
 
 function SetDate({
   dateset,
@@ -31,7 +23,7 @@ function SetDate({
     setnodue(!nodue);
   }
   let dates = new Date();
-  console.log(dates);
+  // console.log(dates);
 
   return dateset == "today" ? (
     <div className="date">
