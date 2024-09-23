@@ -4,7 +4,7 @@ import axios from "axios";
 import { EditTaskProp, Task } from "../TypesDefines/types";
 
 function EditTask({
-  dateset,
+  currentDate,
   changeToday,
   day,
   onChange,
@@ -48,7 +48,7 @@ function EditTask({
       id: editid,
       taskName: value.taskName,
       description: value.description,
-      date: dateset === "today" ? `${day?.toString().slice(0, 15)}` : "",
+      date: currentDate === "today" ? `${day?.toString().slice(0, 15)}` : "",
     };
     uploadData(uploadItem);
     setEdit(false);
@@ -73,7 +73,7 @@ function EditTask({
         />
       </div>
       <SetDate
-        dateset={dateset}
+        currentDate={currentDate}
         changeToday={changeToday}
         day={day}
         onChange={onChange}

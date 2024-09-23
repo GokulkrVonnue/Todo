@@ -7,7 +7,7 @@ const AddPopup = ({
   popevent,
   setpopevent,
   postData,
-  dateset,
+  currentDate,
   changeToday,
   day,
   onChange,
@@ -38,7 +38,7 @@ const AddPopup = ({
       id: null,
       taskName: taskContent,
       description: description,
-      date: dateset === "today" ? `${day?.toString().slice(0, 15)}` : "",
+      date: currentDate === "today" ? `${day?.toString().slice(0, 15)}` : "",
     };
 
     console.log("rendrring postItem", postItem);
@@ -74,7 +74,7 @@ const AddPopup = ({
       </div>
       <div className="dateandprio">
         <SetDate
-          dateset={dateset}
+          currentDate={currentDate}
           changeToday={changeToday}
           day={day}
           onChange={onChange}

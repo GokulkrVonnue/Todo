@@ -20,7 +20,7 @@ export type ValuePiece = Date | null;
 export type DayType = ValuePiece | [ValuePiece, ValuePiece];
 
 export type SidePanelProp = {
-  sidepanelMinimize: (x: boolean) => void;
+  onSidepanelMinimize: (x: boolean) => void;
   sidePanel: Boolean;
   addpop: Boolean;
   setpop: (x: Boolean) => void;
@@ -80,7 +80,7 @@ export type AddPopupProp = {
   popevent: boolean;
   setpopevent: (x: boolean) => void;
   postData: (value: Task) => void;
-  dateset: String;
+  currentDate: String;
   changeToday: () => void;
   day?: DayType;
   onChange?: (value: DayType) => void;
@@ -105,7 +105,7 @@ export type TodayProp = {
 };
 
 export type AccountProp = {
-  sidepanelMinimize: (x: boolean) => void;
+  onSidepanelMinimize: (x: boolean) => void;
   sidePanel: Boolean;
 };
 
@@ -125,7 +125,7 @@ export type AddcontProp = {
 };
 export type EditTaskProp = {
   
-  dateset: String;
+  currentDate: String;
   changeToday?: () => void;
   day?: DayType;
   onChange?: (value: DayType) => void;

@@ -3,7 +3,7 @@ import Account from "./Account";
 import Links from "./Links";
 
 const SidePanel = ({
-  sidepanelMinimize,
+  onSidepanelMinimize,
   sidePanel,
   addpop,
   setpop,
@@ -14,7 +14,7 @@ const SidePanel = ({
   return (
     <>
       <div className={sidePanel ? "sidePanel" : "sidePanelOff"}>
-        <Account sidepanelMinimize={sidepanelMinimize} sidePanel={sidePanel} />
+        <Account onSidepanelMinimize={onSidepanelMinimize} sidePanel={sidePanel} />
         {sidePanel && (
           <Links
             addpop={addpop}

@@ -4,7 +4,7 @@ import AccountDropdown from "./AccountDropdown";
 import { useNavigate } from "react-router-dom";
 import { AccountProp } from "../TypesDefines/types";
 
-function Account({ sidepanelMinimize, sidePanel }: AccountProp) {
+function Account({ onSidepanelMinimize, sidePanel }: AccountProp) {
   let navigate = useNavigate();
   const [accounthov, setAccounthov] = useState<Boolean>(false);
   
@@ -20,7 +20,7 @@ function Account({ sidepanelMinimize, sidePanel }: AccountProp) {
     if (accounthov) {
       setAccounthov(false);
     } else {
-      sidepanelMinimize(!sidePanel);
+      onSidepanelMinimize(!sidePanel);
     }
   }
  useEffect(() => {

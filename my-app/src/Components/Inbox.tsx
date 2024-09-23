@@ -22,7 +22,7 @@ function Inbox({
   searchpop,
   setsearchpop,
 }: InboxProp) {
-  const [today, setDoday] = useState<String>("nodue");
+  const [currentDate, setDoday] = useState<String>("nodue");
   const [pop, setpop1] = useState<boolean>(false);
   const [day, onChange] = useState<DayType>(new Date());
 
@@ -61,7 +61,7 @@ function Inbox({
           popevent={addpop}
           setpopevent={setpop}
           postData={postData}
-          dateset={today}
+          currentDate={currentDate}
           changeToday={changeToday}
           day={day}
           onChange={onChange}
@@ -75,7 +75,7 @@ function Inbox({
             popevent={pop}
             setpopevent={setpop1}
             postData={postData}
-            dateset={today}
+            currentDate={currentDate}
             changeToday={changeToday}
             day={day}
             onChange={onChange}
@@ -88,7 +88,7 @@ function Inbox({
       <div className="popupAdded">
         {edit && (
           <EditTask
-            dateset={today}
+            currentDate={currentDate}
             changeToday={changeToday}
             day={day}
             onChange={onChange}

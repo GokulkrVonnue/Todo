@@ -26,7 +26,7 @@ function Today({
   totalData,
 }: TodayProp) {
   console.log("today is rendering", data.length);
-  const [today, setDoday] = useState<String>("today");
+  const [currentDate, setDoday] = useState<String>("today");
   const [day, onChange] = useState<DayType>(new Date());
   console.log(day?.toString().slice(0, 15));
   function onClickDay() {
@@ -65,7 +65,7 @@ function Today({
           popevent={addpop}
           setpopevent={setpop}
           postData={postData}
-          currentDate={today}
+          currentDate={currentDate}
           changeToday={changeToday}
           day={day}
           onChange={onChange}
@@ -79,7 +79,7 @@ function Today({
             popevent={popevent}
             setpopevent={setpopevent}
             postData={postData}
-            dateset={today}
+            currentDate={currentDate}
             changeToday={changeToday}
             day={day}
             onChange={onChange}
@@ -92,7 +92,7 @@ function Today({
       <div className="popupAdded">
         {edit && (
           <EditTask
-            dateset={today}
+            currentDate={currentDate}
             changeToday={changeToday}
             day={day}
             onChange={onChange}

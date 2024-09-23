@@ -15,7 +15,7 @@ import {
 } from "../FetchItem/CustomFetch";
 
 function Main() {
-  const [sidepanel, sidepanelMinimize] = useState<Boolean>(true);
+  const [sidepanel, onSidepanelMinimize] = useState<Boolean>(true);
   const [addpop, setpop] = useState<Boolean>(false);
   const [serachpop, setsearchpop] = useState<Boolean>(false);
   let [data, setData] = useState<Task[]>([]);
@@ -26,9 +26,9 @@ function Main() {
   useEffect(() => {
     function MediaQueryChange(x: MediaQueryList) {
       if (x.matches) {
-        sidepanelMinimize(false);
+        onSidepanelMinimize(false);
       } else {
-        sidepanelMinimize(true);
+        onSidepanelMinimize(true);
       }
     }
 
@@ -99,7 +99,7 @@ function Main() {
   return (
     <div className={sidepanel ? "main" : "mainoff"}>
       <SidePanel
-        sidepanelMinimize={sidepanelMinimize}
+        onSidepanelMinimize={onSidepanelMinimize}
         sidePanel={sidepanel}
         addpop={addpop}
         setpop={setpop}
