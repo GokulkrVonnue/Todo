@@ -1,49 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ToolTip from "./ToolTip";
-import AccountHover from "./AccountHover";
+import AccountDropdown from "./AccountDropdown";
 import { useNavigate } from "react-router-dom";
+import { AccountProp } from "../TypesDefines/types";
 
-type Account = {
-  sidepanelOperation: (x: boolean) => void;
-  sidePanel: Boolean;
-};
-
-function Account({ sidepanelOperation, sidePanel }: Account) {
+function Account({ onSidepanelMinimize, sidePanel }: AccountProp) {
+  let navigate = useNavigate();
   const [accounthov, setAccounthov] = useState<Boolean>(false);
-  window.addEventListener("click", () => m());
-  function m() {
+  
+  function clickHandle() {
     if (accounthov) {
       setAccounthov(false);
     }
   }
 
-  let navigate = useNavigate();
-
-  const accountUser: string = "gokulkr";
+  const userName: string = "gokulkr";
 
   function sidepanelClose() {
-    if (sidePanel) {
-      let sel = document.querySelector(".active");
-      sel?.classList.add("add");
-    }
-
-    if (!sidePanel) {
-      let sel = document.querySelector(".active");
-      sel?.classList.remove("add");
-    }
-
     if (accounthov) {
       setAccounthov(false);
     } else {
-      sidepanelOperation(!sidePanel);
+      onSidepanelMinimize(!sidePanel);
     }
   }
+ useEffect(() => {
+   window.addEventListener("click", clickHandle);
+   return () => {
+     window.removeEventListener("click", clickHandle);
+   };
+ }, [accounthov]);
 
   let AccountToolTipData = (
     <div className="accountName" onClick={accountHover}>
-      <p className="username">{accountUser}</p>
+      <p className="username">{userName}</p>
 
-      {accounthov && <AccountHover accountuser={accountUser} />}
+      {accounthov && <AccountDropdown userName={userName} />}
       <img src="/img/svgexport-3.svg" alt="" className="AccountMore" />
     </div>
   );
@@ -65,11 +56,6 @@ function Account({ sidepanelOperation, sidePanel }: Account) {
         </div>
 
         <div className="accountUser">
-          {/* <div className="accountName" onClick={()=>accountHover()}>
-                        <p className="username">{accountUser}</p>
-                       
-                        <img src="./img/svgexport-3.svg" alt="" className="AccountMore" />
-                    </div> */}
           <ToolTip data={AccountToolTipData} label={lebel} />
 
           <div className="notificationandside">

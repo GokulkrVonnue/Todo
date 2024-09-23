@@ -1,13 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-type TaskVeiw = {
-  id: number;
-  taskName: string;
-  description: string;
-  date: string;
-};
-export const TAsk = () => {
+import { TaskVeiw } from "../TypesDefines/types";
+
+export const Task = () => {
   let navigateTo = useNavigate();
   let taskVeiwDate = new Date();
   let dateString = taskVeiwDate.toString().slice(0, 15);

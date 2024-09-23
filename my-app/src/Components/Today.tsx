@@ -1,45 +1,14 @@
-import React, { useEffect, useState } from "react";
-import AddSection from "./AddSection";
+import { useState } from "react";
 
 import AddPopup from "./AddPopup";
 import AddedContent from "./AddedContent";
-import Calender from "./SelectCalander";
 import TodayImg from "./TodayImg";
-import SelectCalander from "./SelectCalander";
 import Addcont from "./Addcont";
 import EditTask from "./EditTask";
-import ItemVeiw from "./ItemVeiw";
 import SearchTask from "./SearchTask";
+import { DayType, TodayProp } from "../TypesDefines/types";
 
-interface Task {
-  id: number;
-  taskName: string;
-  description: string;
-  date: String;
-}
 
-interface Task1 {
-  task: string;
-  descr: string;
-  date: String;
-}
-type Today = {
-  data: Task[];
-  postData: (value: Task1) => void;
-  deleteData: (id: number) => void;
-  addpop: Boolean;
-  setpop: (x: Boolean) => void;
-  editData: (x: number) => void;
-  edit: Boolean;
-  setEdit: (x: Boolean) => void;
-  editid: number | null;
-  uploadData: (o: Task1) => void;
-  searchpop: Boolean;
-  setsearchpop: (x: Boolean) => void;
-  totalData: Task[];
-};
-type ValuePiece = Date | null;
-type DayType = ValuePiece | [ValuePiece, ValuePiece];
 
 function Today({
   data,
@@ -55,9 +24,9 @@ function Today({
   searchpop,
   setsearchpop,
   totalData,
-}: Today) {
+}: TodayProp) {
   console.log("today is rendering", data.length);
-  const [today, setDoday] = useState<String>("today");
+  const [currentDate, setDoday] = useState<String>("today");
   const [day, onChange] = useState<DayType>(new Date());
   console.log(day?.toString().slice(0, 15));
   function onClickDay() {
@@ -96,7 +65,7 @@ function Today({
           popevent={addpop}
           setpopevent={setpop}
           postData={postData}
-          dateset={today}
+          currentDate={currentDate}
           changeToday={changeToday}
           day={day}
           onChange={onChange}
@@ -110,7 +79,7 @@ function Today({
             popevent={popevent}
             setpopevent={setpopevent}
             postData={postData}
-            dateset={today}
+            currentDate={currentDate}
             changeToday={changeToday}
             day={day}
             onChange={onChange}
@@ -123,8 +92,7 @@ function Today({
       <div className="popupAdded">
         {edit && (
           <EditTask
-            postData={postData}
-            dateset={today}
+            currentDate={currentDate}
             changeToday={changeToday}
             day={day}
             onChange={onChange}
@@ -164,7 +132,6 @@ function Today({
       <div className="resultAdded"></div>
 
       {data.length == 0 && <TodayImg />}
-      <ItemVeiw />
     </div>
   );
 }

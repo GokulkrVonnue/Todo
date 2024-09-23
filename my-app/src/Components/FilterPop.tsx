@@ -1,15 +1,7 @@
 import React, { ChangeEvent, useState } from "react";
-import SelectCalander from "./SelectCalander";
-import FilterCalaender from "./FilterCalaender";
 import FilterCalander from "./FilterCalaender";
+import { DayType, FilterProp } from "../TypesDefines/types";
 
-type FilterProp = {
-  filterpop: Boolean;
-  setFilter: (x: Boolean) => void;
-  filternameAndquery: (name: string, query: string | undefined) => void;
-};
-type ValuePiece = Date | null;
-type DayType = ValuePiece | [ValuePiece, ValuePiece];
 function FilterPop({ setFilter, filterpop, filternameAndquery }: FilterProp) {
   let [filcontent, setFilcontent] = useState<string>("");
 

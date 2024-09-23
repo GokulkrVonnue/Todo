@@ -1,10 +1,7 @@
-import React, { useContext, useState } from "react";
+import { useState } from "react";
 import FlagsPriority from "./FlagsPriority";
-type PriorityofFlag = {
-  priority: string;
-};
+
 const Priority = () => {
-  // let y=useContext<PriorityofFlag>(PriorityofFlag)
   const [priority, setPriority] = useState<string>("p4");
   const [flagprio, setFlagprio] = useState<Boolean>(false);
   function ChanePriority() {}

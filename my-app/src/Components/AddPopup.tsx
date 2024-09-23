@@ -1,97 +1,57 @@
-import React, { ChangeEvent, useState } from "react";
-
-import Calender from "./SelectCalander";
-
+import { ChangeEvent, useState } from "react";
 import SetDate from "./SetDate";
 import Priority from "./Priority";
-type ValuePiece = Date | null;
-type DayType = ValuePiece | [ValuePiece, ValuePiece];
-interface Task {
-  id: number;
-  task: string;
-  descr: string;
-}
-interface Task1 {
-  task: string;
-  descr: string;
-  date: String;
-}
-type AddPopup = {
-  popevent: boolean;
-  setpopevent: (x: boolean) => void;
-  postData: (o: Task1) => void;
-  dateset: String;
-  changeToday: () => void;
-  day?: DayType;
-  onChange?: (value: DayType) => void;
-  onClickDay: () => void;
-  edit: Boolean;
-  setEdit: (x: Boolean) => void;
-};
-const d = new Date();
+import { AddPopupProp, Task } from "../TypesDefines/types";
 
 const AddPopup = ({
   popevent,
   setpopevent,
   postData,
-  dateset,
+  currentDate,
   changeToday,
   day,
   onChange,
   onClickDay,
   edit,
   setEdit,
-}: AddPopup) => {
-  const [taskcontent, settask] = useState<boolean>(false);
+}: AddPopupProp) => {
+  const [taskContent, setTaskContent] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
 
   function buttons() {
-    if (!taskcontent) {
+    if (taskContent == "") {
       return (
         <button className="addone" disabled>
           Add task
         </button>
       );
-    } else if (taskcontent) {
+    } else {
       return (
         <button className="addone1" onClick={() => addtoTAsk()}>
-          Add TAsk
+          Add Task
         </button>
       );
     }
   }
   const addtoTAsk = () => {
-    let o: Task1 = {
-      task: "",
-      descr: "",
-      date: "",
+    let postItem: Task = {
+      id: null,
+      taskName: taskContent,
+      description: description,
+      date: currentDate === "today" ? `${day?.toString().slice(0, 15)}` : "",
     };
-    let taskName = document.querySelector(".taskname") as HTMLInputElement;
-    let descr = document.querySelector(".description") as HTMLInputElement;
-    if (taskName.value) {
-      o.task = taskName.value;
-    }
-    if (descr.value) {
-      o.descr = descr.value;
-    }
 
-    dateset == "today"
-      ? (o.date = `${day?.toString().slice(0, 15)}`)
-      : (o.date = "");
-
-    //   console.log(o)
-    console.log("rendrring o", o);
-    postData(o);
-    taskName.value = "";
-    descr.value = "";
-    settask(false);
+    console.log("rendrring postItem", postItem);
+    postData(postItem);
+    setTaskContent("");
+    setDescription("");
   };
 
-  function textevent(e: ChangeEvent<HTMLInputElement>) {
-    if (e.target.value == "") {
-      settask(false);
-    } else {
-      settask(true);
-    }
+  function handleTextChange(e: ChangeEvent<HTMLInputElement>) {
+    setTaskContent(e.target.value);
+  }
+  function handleDescriptionChange(e: ChangeEvent<HTMLInputElement>) {
+    setDescription(e.target.value);
   }
 
   return (
@@ -101,13 +61,20 @@ const AddPopup = ({
           type="text"
           placeholder="Task name"
           className="taskname"
-          onChange={textevent}
+          onChange={handleTextChange}
+          value={taskContent}
         />
-        <input type="text" placeholder="Description" className="description" />
+        <input
+          type="text"
+          placeholder="Description"
+          className="description"
+          onChange={handleDescriptionChange}
+          value={description}
+        />
       </div>
       <div className="dateandprio">
         <SetDate
-          dateset={dateset}
+          currentDate={currentDate}
           changeToday={changeToday}
           day={day}
           onChange={onChange}

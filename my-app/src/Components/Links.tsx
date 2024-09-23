@@ -1,24 +1,11 @@
-import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
-interface Task {
-  id: number;
-  taskName: string;
-  description: string;
-  date: String;
-}
-type LinksProp = {
-  addpop: Boolean;
-  setpop: (x: Boolean) => void;
-  searchpop: Boolean;
-  setsearchpop: (x: Boolean) => void;
-  data: Task[];
-};
+import { LinksProp } from "../TypesDefines/types";
 
 function Links({ addpop, setpop, searchpop, setsearchpop, data }: LinksProp) {
   let param = useLocation().pathname.slice(1);
-  console.log(param);
+
   let todayDate = new Date().toString().slice(0, 15);
-  console.log(todayDate);
+
   let todayLength = data.filter((item) => item.date === todayDate).length;
 
   return (

@@ -1,18 +1,8 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-interface Task {
-  id: number;
-  taskName: string;
-  description: string;
-  date: String;
-}
-type SearchTask = {
-  searchpop: Boolean;
-  setsearchpop: (x: Boolean) => void;
-  data: Task[];
-};
-const SearchTask = ({ searchpop, setsearchpop, data }: SearchTask) => {
+import { SearchTaskProp, Task } from "../TypesDefines/types";
+
+const SearchTask = ({ searchpop, setsearchpop, data }: SearchTaskProp) => {
   let navigatetoitem = useNavigate();
 
   window.addEventListener("click", () => {
@@ -20,23 +10,10 @@ const SearchTask = ({ searchpop, setsearchpop, data }: SearchTask) => {
       setsearchpop(false);
     }
   });
-  // let [searchData, setSearchData] = useState<Task[]>();
+
   let [search, setSearch] = useState<Task[]>();
   let [wordtomatch, setWord] = useState<string>("");
-  // async function SearchData() {
-  //   try {
-  //     await axios.get(`http://localhost:3005`).then((res) => {
-  //       console.log("data is seraching");
-  //       setSearchData(res.data);
-  //     });
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
 
-  // useEffect(() => {
-  //   SearchData();
-  // }, []);
   function findmatch(wordtomatch: string) {
     console.log(wordtomatch);
     return data?.filter((item) => {

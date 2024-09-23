@@ -1,62 +1,37 @@
 import React, { useEffect, useState } from "react";
 import SetDate from "./SetDate";
 import axios from "axios";
-
-type ValuePiece = Date | null;
-type DayType = ValuePiece | [ValuePiece, ValuePiece];
-interface Task {
-  id: number;
-  taskName: string;
-  description: string;
-  date: String;
-}
-interface Task1 {
-  task: string;
-  descr: string;
-  date: String;
-}
-type EditTask = {
-  postData: (o: Task1) => void;
-  dateset: String;
-  changeToday?: () => void;
-  day?: DayType;
-  onChange?: (value: DayType) => void;
-  onClickDay: () => void;
-  edit: Boolean;
-  setEdit: (x: Boolean) => void;
-  editid: number | null;
-  uploadData: (o: Task1) => void;
-};
+import { EditTaskProp, Task } from "../TypesDefines/types";
 
 function EditTask({
-  postData,
-  dateset,
+  currentDate,
   changeToday,
   day,
   onChange,
   onClickDay,
-  edit,
   setEdit,
   editid,
   uploadData,
-}: EditTask) {
+}: EditTaskProp) {
+
   let [editdata, setEditdata] = useState<Task>();
   const [value, setValue] = useState({
     taskName: "",
     description: "",
     date: "",
   });
+
   async function getEditData() {
     try {
       await axios.get(`http://localhost:3005/todo/${editid}`).then((res) => {
-        console.log(res.data[0].date);
-        setValue((prevalue) => ({
-          ...prevalue,
-          taskName: res.data[0].taskName,
-          description: res.data[0].description,
-          data: res.data[0].data,
-        }));
-        setEditdata(res.data);
+        const data = res.data[0];
+
+        setValue({
+          taskName: data.taskName,
+          description: data.description,
+          date: data.date,
+        });
+        setEditdata(data);
       });
     } catch (error) {
       console.error(error);
@@ -66,26 +41,16 @@ function EditTask({
   useEffect(() => {
     getEditData();
   }, []);
+
   function datatobeLoad() {
-    let o: Task1 = {
-      task: "",
-      descr: "",
-      date: "",
+    
+    let uploadItem: Task = {
+      id: editid,
+      taskName: value.taskName,
+      description: value.description,
+      date: currentDate === "today" ? `${day?.toString().slice(0, 15)}` : "",
     };
-    let taskName = document.querySelector(".taskname") as HTMLInputElement;
-    let descr = document.querySelector(".description") as HTMLInputElement;
-    if (taskName.value) {
-      o.task = taskName.value;
-    }
-    if (descr.value) {
-      o.descr = descr.value;
-    }
-
-    dateset == "today"
-      ? (o.date = `${day?.toString().slice(0, 15)}`)
-      : (o.date = "");
-
-    uploadData(o);
+    uploadData(uploadItem);
     setEdit(false);
   }
 
@@ -96,19 +61,19 @@ function EditTask({
           type="text"
           placeholder="Task name"
           className="taskname"
-          value={value.taskName}
+          value={editdata?.taskName}
           onChange={(e) => setValue({ ...value, taskName: e.target.value })}
         />
         <input
           type="text"
           placeholder="Description"
           className="description"
-          value={value.description}
+          value={editdata?.description}
           onChange={(e) => setValue({ ...value, description: e.target.value })}
         />
       </div>
       <SetDate
-        dateset={dateset}
+        currentDate={currentDate}
         changeToday={changeToday}
         day={day}
         onChange={onChange}

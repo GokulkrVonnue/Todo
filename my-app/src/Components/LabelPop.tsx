@@ -1,12 +1,6 @@
-import { click } from "@testing-library/user-event/dist/click";
-import React, { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
+import { LabelPopProp } from "../TypesDefines/types";
 
-type LabelPopProp = {
-  labelpop: Boolean;
-  setLabel: (x: Boolean) => void;
-  LabelNameset: (x: string) => void;
-  // filternameAndquery:(name:string,query:string)=>void
-};
 function LabelPop({ labelpop, setLabel, LabelNameset }: LabelPopProp) {
   window.addEventListener("click", () => {
     if (labelpop) {

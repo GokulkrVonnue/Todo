@@ -1,14 +1,7 @@
-import React from "react";
 import Calendar from "react-calendar";
-type ValuePiece = Date | null;
-type DayType = ValuePiece | [ValuePiece, ValuePiece];
-type FiltertCalander = {
-  day?: DayType;
-  onChange?: (value: DayType) => void;
-  dayClick: () => void;
-};
+import { FiltertCalanderProp } from "../TypesDefines/types";
 
-function FilterCalander({ day, onChange, dayClick }: FiltertCalander) {
+function FilterCalander({ day, onChange, dayClick }: FiltertCalanderProp) {
   return (
     <div
       className="c filtercalender"

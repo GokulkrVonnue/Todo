@@ -1,25 +1,12 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import AddedContent from "./AddedContent";
+import { Task,Filterss, FliterVeiwProps } from "../TypesDefines/types";
 
-interface FIlterss {
-  id: number;
-  filterName: string;
-  filterquery: string;
-}
-interface Task {
-  id: number;
-  taskName: string;
-  description: string;
-  date: String;
-}
-type FliterProps = {
-  data: Task[];
-};
 
-function FliterVeiw({ data }: FliterProps) {
-  let [filterveiw, setfilterveiw] = useState<FIlterss>();
+
+function FliterVeiw({ data }: FliterVeiwProps) {
+  let [filterveiw, setfilterveiw] = useState<Filterss>();
   let [filteredData, setFilteredData] = useState<Task[]>();
 
   console.log(data);
