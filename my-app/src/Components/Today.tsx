@@ -65,7 +65,7 @@ function Today({
           popevent={addpop}
           setpopevent={setpop}
           postData={postData}
-          dateset={today}
+          currentDate={today}
           changeToday={changeToday}
           day={day}
           onChange={onChange}

@@ -109,15 +109,15 @@ export type AccountProp = {
   sidePanel: Boolean;
 };
 
-export type AccountHoverProp = {
-  accountuser: string;
+export type AccountDropdownProp = {
+  userName: string;
 };
 
 export type AddcontProp = {
   popevent: Boolean;
   setpopevent: (x: boolean) => void;
   postData: (value: Task) => void;
-  dateset: String;
+  currentDate: String;
   changeToday?: () => void;
   day?: DayType;
   onChange?: (value: DayType) => void;
@@ -199,7 +199,7 @@ export type SelectCalanderProp = {
 };
 
 export type Dateprop = {
-  dateset: String;
+  currentDate: String;
   changeToday?: () => void;
   day?: DayType;
   onChange?: (value: DayType) => void;

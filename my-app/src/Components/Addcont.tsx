@@ -6,7 +6,7 @@ const Addcont = ({
   popevent,
   setpopevent,
   postData,
-  dateset,
+  currentDate,
   changeToday,
   day,
   onChange,
@@ -20,7 +20,7 @@ const Addcont = ({
       id: null,
       taskName: taskContent,
       description: description,
-      date: dateset === "today" ? `${day?.toString().slice(0, 15)}` : "",
+      date: currentDate === "today" ? `${day?.toString().slice(0, 15)}` : "",
     };
 
     console.log("rendrring postItem", postItem);
@@ -73,7 +73,7 @@ const Addcont = ({
       </div>
 
       <SetDate
-        dateset={dateset}
+        currentDate={currentDate}
         changeToday={changeToday}
         day={day}
         onChange={onChange}

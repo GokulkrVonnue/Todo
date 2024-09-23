@@ -3,7 +3,7 @@ import SelectCalander from "./SelectCalander";
 import { Dateprop } from "../TypesDefines/types";
 
 function SetDate({
-  dateset,
+  currentDate,
   changeToday,
   day,
   onChange,
@@ -25,7 +25,7 @@ function SetDate({
   let dates = new Date();
   // console.log(dates);
 
-  return dateset == "today" ? (
+  return currentDate == "today" ? (
     <div className="date">
       <div>
         <img src="./img/svgexport-16.svg" alt="" />

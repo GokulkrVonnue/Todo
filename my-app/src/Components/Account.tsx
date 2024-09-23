@@ -1,20 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ToolTip from "./ToolTip";
-import AccountHover from "./AccountHover";
+import AccountDropdown from "./AccountDropdown";
 import { useNavigate } from "react-router-dom";
 import { AccountProp } from "../TypesDefines/types";
 
 function Account({ sidepanelMinimize, sidePanel }: AccountProp) {
   let navigate = useNavigate();
   const [accounthov, setAccounthov] = useState<Boolean>(false);
-  window.addEventListener("click", () => clickHandle());
+  
   function clickHandle() {
     if (accounthov) {
       setAccounthov(false);
     }
   }
 
-  const accountUser: string = "gokulkr";
+  const userName: string = "gokulkr";
 
   function sidepanelClose() {
     if (accounthov) {
@@ -23,12 +23,18 @@ function Account({ sidepanelMinimize, sidePanel }: AccountProp) {
       sidepanelMinimize(!sidePanel);
     }
   }
+ useEffect(() => {
+   window.addEventListener("click", clickHandle);
+   return () => {
+     window.removeEventListener("click", clickHandle);
+   };
+ }, [accounthov]);
 
   let AccountToolTipData = (
     <div className="accountName" onClick={accountHover}>
-      <p className="username">{accountUser}</p>
+      <p className="username">{userName}</p>
 
-      {accounthov && <AccountHover accountuser={accountUser} />}
+      {accounthov && <AccountDropdown userName={userName} />}
       <img src="/img/svgexport-3.svg" alt="" className="AccountMore" />
     </div>
   );

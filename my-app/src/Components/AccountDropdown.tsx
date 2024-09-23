@@ -1,6 +1,6 @@
-import { AccountHoverProp } from "../TypesDefines/types";
+import { AccountDropdownProp } from "../TypesDefines/types";
 
-function AccountHover({ accountuser }: AccountHoverProp) {
+function AccountDropdown({ userName }: AccountDropdownProp) {
   return (
     <>
       <div className="acconthov">
@@ -11,7 +11,7 @@ function AccountHover({ accountuser }: AccountHoverProp) {
             </div>
           </div>
           <div>
-            <p className="username">{accountuser}</p>
+            <p className="username">{userName}</p>
             <p className="taskno">1/5 tasks</p>
           </div>
           <div className="OthenP">O then P</div>
@@ -45,4 +45,4 @@ function AccountHover({ accountuser }: AccountHoverProp) {
   );
 }
 
-export default AccountHover;
+export default AccountDropdown;
